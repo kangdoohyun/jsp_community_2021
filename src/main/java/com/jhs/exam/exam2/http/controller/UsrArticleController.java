@@ -54,7 +54,7 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 
 		if (article == null) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
@@ -80,7 +80,7 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 		
 
 		if (article == null) {
@@ -95,7 +95,7 @@ public class UsrArticleController extends Controller {
 	}
 
 	private void actionShowList(Rq rq) {
-		List<Article> articles = articleService.getForPrintArticles();
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember());
 		
 		rq.setAttr("articles", articles);
 		rq.jsp("usr/article/list");
@@ -150,7 +150,7 @@ public class UsrArticleController extends Controller {
 			rq.historyBack("body를 입력해주세요.");
 			return;
 		}
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 		
 		if (article == null) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
@@ -177,7 +177,7 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 
-		Article article = articleService.getForPrintArticleById(id);
+		Article article = articleService.getForPrintArticleById(rq.getLoginedMember(), id);
 
 		if (article == null) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
