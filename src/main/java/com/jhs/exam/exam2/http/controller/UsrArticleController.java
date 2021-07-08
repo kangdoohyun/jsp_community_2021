@@ -143,6 +143,12 @@ public class UsrArticleController extends Controller {
 			rq.historyBack("body를 입력해주세요.");
 			return;
 		}
+		
+		Article article = articleService.getForPrintArticleById(id);
+		if( rq.getLoginedMemberId() != article.getMemberId() ) {
+			rq.historyBack("본인이 작성한 게시물만 수정할 수 있습니다.");
+			return;
+		}
 
 		ResultData modifyRd = articleService.modify(id, title, body);
 
@@ -163,13 +169,13 @@ public class UsrArticleController extends Controller {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
-
-		rq.setAttr("article", article);
-		
 		if( rq.getLoginedMemberId() != article.getMemberId() ) {
 			rq.historyBack("본인이 작성한 게시물만 수정할 수 있습니다.");
 			return;
 		}
+
+		rq.setAttr("article", article);
+				
 		rq.jsp("usr/article/modify");
 	}
 }

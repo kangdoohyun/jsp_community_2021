@@ -63,7 +63,7 @@
 
 						<div>${article.bodySummaryForPrint}</div>
 					</div>
-					
+					<c:if test="${article.memberId == rq.loginedMemberId}">
 					<div class="btns mt-3">
 						<a href="../article/modify?id=${article.id}" class="btn btn-link">
 							<span><i class="fas fa-edit"></i></span>
@@ -74,6 +74,7 @@
 							<span>삭제</span>
 						</a>
 					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>
