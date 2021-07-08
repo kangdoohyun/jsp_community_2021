@@ -17,6 +17,9 @@
 			</div>
 
 			<div class="px-4">
+				<c:if test="${rq.logined}">
+					<button class="btn btn-link" onclick="location.href='./write'">글쓰기</button>
+				</c:if>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />
 
