@@ -89,14 +89,13 @@ public class UsrArticleController extends Controller {
 		
 		Member member = memberService.getMemberById(article.getMemberId());
 		
-		rq.setAttr("member", member);
 		rq.setAttr("article", article);
 		rq.jsp("usr/article/detail");
 	}
 
 	private void actionShowList(Rq rq) {
 		List<Article> articles = articleService.getForPrintArticles();
-
+		
 		rq.setAttr("articles", articles);
 		rq.jsp("usr/article/list");
 	}

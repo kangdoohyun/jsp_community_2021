@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.jhs.exam.exam2.container.Container" %>
-<%@ page import="com.jhs.exam.exam2.dto.Member" %>
-<%@ page import="com.jhs.exam.exam2.dto.Article" %>
 
 <c:set var="pageTitle" value="게시물 리스트" />
 <%@ include file="../part/head.jspf"%>
@@ -25,13 +22,7 @@
 				</c:if>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />
-					<%
-						Article article = (Article)pageContext.getAttribute("article");
-						Member member = Container.memberService.getMemberById(article.getMemberId());
-						pageContext.setAttribute("member", member);
-					%>
-					<c:set var="member" value="${member}" />
-
+					
 					<div class="py-4">
 						<div class="grid gap-3" style="grid-template-columns: 100px 1fr;">
 							<a href="${detailUri}">
@@ -52,7 +43,7 @@
 
 							<a href="${detailUri}" class="cursor-pointer hover:underline">
 								<span class="badge badge-accent">작성자</span>
-								<span>${member.nickname}</span>
+								<span>${article.extra__writerName}</span>
 							</a>
 
 							<a href="${detailUri}" class="hover:underline">

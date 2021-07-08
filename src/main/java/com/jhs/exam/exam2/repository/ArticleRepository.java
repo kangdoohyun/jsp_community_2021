@@ -24,9 +24,11 @@ public class ArticleRepository {
 
 	public List<Article> getForPrintArticles() {
 		SecSql sql = new SecSql();
-		sql.append("SELECT A.*");
+		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
 		sql.append("FROM article AS A");
-		sql.append("ORDER BY id DESC");
+		sql.append("LEFT JOIN `member` AS M");
+		sql.append("ON M.id = A.memberId");
+		sql.append("ORDER BY A.id DESC");
 		
 		return MysqlUtil.selectRows(sql, Article.class);
 	}
