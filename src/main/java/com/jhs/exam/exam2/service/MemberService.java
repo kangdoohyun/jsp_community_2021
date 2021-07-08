@@ -9,7 +9,7 @@ public class MemberService {
 	private MemberRepository memberRepository = Container.memberRepository;
 
 	public ResultData login(String loginId, String loginPw) {
-		Member member = memberRepository.getMemberByLoginId(loginId);
+		Member member = getMemberByLoginId(loginId);
 
 		if (member == null) {
 			return ResultData.from("F-1", "존재하지 않는 회원의 로그인아이디 입니다.");
@@ -20,6 +20,14 @@ public class MemberService {
 		}
 
 		return ResultData.from("S-1", "환영합니다.", "member", member);
+	}
+	
+	public Member getMemberById(int id) {
+		return memberRepository.getMemberById(id);
+	}
+	
+	public Member getMemberByLoginId(String loginId) {
+		return memberRepository.getMemberByLoginId(loginId);
 	}
 
 }

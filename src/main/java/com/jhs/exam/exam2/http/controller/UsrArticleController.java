@@ -4,13 +4,16 @@ import java.util.List;
 
 import com.jhs.exam.exam2.container.Container;
 import com.jhs.exam.exam2.dto.Article;
+import com.jhs.exam.exam2.dto.Member;
 import com.jhs.exam.exam2.dto.ResultData;
 import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.service.ArticleService;
+import com.jhs.exam.exam2.service.MemberService;
 import com.jhs.exam.exam2.util.Ut;
 
 public class UsrArticleController extends Controller {
 	private ArticleService articleService = Container.articleService;
+	private MemberService memberService = Container.memberService;
 
 	@Override
 	public void performAction(Rq rq) {
@@ -77,12 +80,16 @@ public class UsrArticleController extends Controller {
 		}
 
 		Article article = articleService.getForPrintArticleById(id);
+		
 
 		if (article == null) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
-
+		
+		Member member = memberService.getMemberById(article.getMemberId());
+		
+		rq.setAttr("member", member);
 		rq.setAttr("article", article);
 		rq.jsp("usr/article/detail");
 	}
