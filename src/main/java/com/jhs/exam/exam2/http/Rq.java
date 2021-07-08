@@ -27,19 +27,19 @@ public class Rq {
 	private String controllerName;
 	@Getter
 	private String actionMethodName;
-	
+
 	@Getter
 	@Setter
 	private boolean isLogined = false;
-	
+
 	@Getter
 	@Setter
 	private int loginedMemberId = 0;
-	
+
 	@Getter
 	@Setter
 	private Member loginedMember = null;
-	
+
 	public boolean isNotLogined() {
 		return isLogined == false;
 	}

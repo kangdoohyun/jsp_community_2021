@@ -93,7 +93,9 @@ public class UsrArticleController extends Controller {
 		String title = rq.getParam("title", "");
 		String body = rq.getParam("body", "");
 		String redirectUri = rq.getParam("redirectUri", "../article/list");
-
+		int memberId = rq.getLoginedMemberId();
+		int boardId = 2;
+		
 		if (title.length() == 0) {
 			rq.historyBack("title을 입력해주세요.");
 			return;
@@ -104,7 +106,7 @@ public class UsrArticleController extends Controller {
 			return;
 		}
 
-		ResultData writeRd = articleService.write(title, body);
+		ResultData writeRd = articleService.write(title, body, memberId, boardId);
 		int id = (int) writeRd.getBody().get("id");
 
 		redirectUri = redirectUri.replace("[NEW_ID]", id + "");
