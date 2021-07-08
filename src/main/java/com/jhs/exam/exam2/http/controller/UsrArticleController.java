@@ -60,9 +60,10 @@ public class UsrArticleController extends Controller {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
+		ResultData acterCanDeleteRd = articleService.acterCanDelete(rq.getLoginedMember(), article);
 		
-		if( rq.getLoginedMemberId() != article.getMemberId() ) {
-			rq.historyBack("본인이 작성한 게시물만 삭제할 수 있습니다.");
+		if(acterCanDeleteRd.isFail()) {
+			rq.historyBack(acterCanDeleteRd.getMsg());
 			return;
 		}
 		
@@ -149,10 +150,17 @@ public class UsrArticleController extends Controller {
 			rq.historyBack("body를 입력해주세요.");
 			return;
 		}
-		
 		Article article = articleService.getForPrintArticleById(id);
-		if( rq.getLoginedMemberId() != article.getMemberId() ) {
-			rq.historyBack("본인이 작성한 게시물만 수정할 수 있습니다.");
+		
+		if (article == null) {
+			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
+			return;
+		}
+		
+		ResultData acterCanModifyRd = articleService.acterCanModify(rq.getLoginedMember(), article);
+		
+		if(acterCanModifyRd.isFail()) {
+			rq.historyBack(acterCanModifyRd.getMsg());
 			return;
 		}
 
@@ -175,8 +183,10 @@ public class UsrArticleController extends Controller {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
-		if( rq.getLoginedMemberId() != article.getMemberId() ) {
-			rq.historyBack("본인이 작성한 게시물만 수정할 수 있습니다.");
+		ResultData acterCanModifyRd = articleService.acterCanModify(rq.getLoginedMember(), article);
+		
+		if(acterCanModifyRd.isFail()) {
+			rq.historyBack(acterCanModifyRd.getMsg());
 			return;
 		}
 
