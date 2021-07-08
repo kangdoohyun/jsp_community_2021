@@ -52,9 +52,14 @@ public class UsrArticleController extends Controller {
 		}
 
 		Article article = articleService.getForPrintArticleById(id);
-		
-		if ( article == null ) {
+
+		if (article == null) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
+			return;
+		}
+		
+		if( rq.getLoginedMemberId() != article.getMemberId() ) {
+			rq.historyBack("본인이 작성한 게시물만 삭제할 수 있습니다.");
 			return;
 		}
 		
@@ -72,8 +77,8 @@ public class UsrArticleController extends Controller {
 		}
 
 		Article article = articleService.getForPrintArticleById(id);
-		
-		if ( article == null ) {
+
+		if (article == null) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
@@ -84,7 +89,7 @@ public class UsrArticleController extends Controller {
 
 	private void actionShowList(Rq rq) {
 		List<Article> articles = articleService.getForPrintArticles();
-		
+
 		rq.setAttr("articles", articles);
 		rq.jsp("usr/article/list");
 	}
@@ -95,7 +100,7 @@ public class UsrArticleController extends Controller {
 		String redirectUri = rq.getParam("redirectUri", "../article/list");
 		int memberId = rq.getLoginedMemberId();
 		int boardId = 2;
-		
+
 		if (title.length() == 0) {
 			rq.historyBack("title을 입력해주세요.");
 			return;
@@ -117,13 +122,13 @@ public class UsrArticleController extends Controller {
 	private void actionShowWrite(Rq rq) {
 		rq.jsp("usr/article/write");
 	}
-	
+
 	private void actionDoModify(Rq rq) {
 		int id = rq.getIntParam("id", 0);
 		String title = rq.getParam("title", "");
 		String body = rq.getParam("body", "");
 		String redirectUri = rq.getParam("redirectUri", Ut.f("../article/detail?id=%d", id));
-		
+
 		if (id == 0) {
 			rq.historyBack("id를 입력해주세요.");
 			return;
@@ -153,13 +158,18 @@ public class UsrArticleController extends Controller {
 		}
 
 		Article article = articleService.getForPrintArticleById(id);
-		
-		if ( article == null ) {
+
+		if (article == null) {
 			rq.historyBack(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
 			return;
 		}
 
 		rq.setAttr("article", article);
+		
+		if( rq.getLoginedMemberId() != article.getMemberId() ) {
+			rq.historyBack("본인이 작성한 게시물만 수정할 수 있습니다.");
+			return;
+		}
 		rq.jsp("usr/article/modify");
 	}
 }
