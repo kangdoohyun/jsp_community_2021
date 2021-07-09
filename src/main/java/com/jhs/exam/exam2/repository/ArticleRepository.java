@@ -29,10 +29,10 @@ public class ArticleRepository {
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");
 		if(searchKeywordTypeCode.equals("title") && searchKeyword.length() != 0) {
-			sql.append("WHERE A.title = ?", searchKeyword);
+			sql.append("WHERE A.title LIKE CONCAT('%', ?, '%')", searchKeyword);
 		}
 		else if(searchKeywordTypeCode.equals("body") && searchKeyword.length() != 0) {
-			sql.append("WHERE A.body = ?", searchKeyword);
+			sql.append("WHERE A.body LIKE CONCAT('%', ?, '%')", searchKeyword);
 		}
 		sql.append("ORDER BY A.id DESC");
 		sql.append("LIMIT ?", itemsInAPage);
