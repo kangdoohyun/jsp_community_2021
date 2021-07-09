@@ -18,8 +18,8 @@ public class ArticleService {
 		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), "id", id);
 	}
 	
-	public List<Article> getArticles() {
-		return articleRepository.getArticles();
+	public List<Article> getArticles(String searchKeywordTypeCode, String searchKeyword) {
+		return articleRepository.getArticles(searchKeywordTypeCode, searchKeyword);
 	}
 	
 	public List<Article> getForPrintArticles(Member actor, int page, int itemsInAPage, String searchKeywordTypeCode, String searchKeyword) {

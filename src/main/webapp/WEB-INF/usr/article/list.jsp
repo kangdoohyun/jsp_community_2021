@@ -20,9 +20,12 @@
 				<c:if test="${rq.logined}">
 					<button class="btn btn-link" onclick="location.href='./write'">글쓰기</button>
 				</c:if>
-				<div class="text-lg font-bold">
-					<span><i class="fas fa-bars"></i></span>
-					<span>전체 게시물 수 : ${allArticles.size()}</span>
+				<div class="py-4">
+					<div class="badge badge-primary">
+						<span><i class="fas fa-bars"></i></span>
+						<span>전체 게시물 수</span>
+					</div> 
+					<span>${allArticles.size()}</span>
 				</div>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />

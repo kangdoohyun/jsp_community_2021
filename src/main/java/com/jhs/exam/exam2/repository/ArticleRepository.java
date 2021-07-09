@@ -78,12 +78,18 @@ public class ArticleRepository {
 		return MysqlUtil.update(sql);
 	}
 
-	public List<Article> getArticles() {
+	public List<Article> getArticles(String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");
+		if(searchKeywordTypeCode.equals("title") && searchKeyword.length() != 0) {
+			sql.append("WHERE A.title LIKE CONCAT('%', ?, '%')", searchKeyword);
+		}
+		else if(searchKeywordTypeCode.equals("body") && searchKeyword.length() != 0) {
+			sql.append("WHERE A.body LIKE CONCAT('%', ?, '%')", searchKeyword);
+		}
 		sql.append("ORDER BY A.id DESC");
 		
 		return MysqlUtil.selectRows(sql, Article.class);

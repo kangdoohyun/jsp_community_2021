@@ -10,108 +10,10 @@ CREATE TABLE article (
     `body` TEXT NOT NULL
 );
 
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
-INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = '제목', `body` = '내용';
+INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = CONCAT("제목", RAND()), `body` = CONCAT("내용", RAND());
+INSERT INTO article SET regDate = NOW(), updateDate = NOW(), title = CONCAT("제목", RAND()), `body` = CONCAT("내용", RAND());
 
-
+SELECT * FROM article;
 # 회원 테이블 생성
 CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -204,4 +106,11 @@ ADD COLUMN dislikeCount INT(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `body`;
 UPDATE article
 SET memberId = 2,
 boardId = 2;
+/*
+# 테스트 개시물 불리기
+INSERT INTO article (regDate, updateDate, memberId, boardId, title, `body`)
+SELECT NOW(), NOW(), CAST(RAND() * 1 AS SIGNED) + 1, CAST(RAND() * 1 AS SIGNED) + 1, CONCAT("제목", RAND()), CONCAT("내용", RAND())
+FROM article;
+*/
+SELECT * FROM article;
 
