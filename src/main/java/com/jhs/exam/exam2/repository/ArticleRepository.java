@@ -22,7 +22,7 @@ public class ArticleRepository {
 		return id;
 	}
 
-	public List<Article> getForPrintArticles(int page, int itemsInAPage, String searchKeywordTypeCode, String searchKeyword) {
+	public List<Article> getForPrintArticles(int limitFrom, int limitTake, String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
 		sql.append("FROM article AS A");
@@ -35,8 +35,8 @@ public class ArticleRepository {
 			sql.append("WHERE A.body LIKE CONCAT('%', ?, '%')", searchKeyword);
 		}
 		sql.append("ORDER BY A.id DESC");
-		sql.append("LIMIT ?", itemsInAPage);
-		sql.append("OFFSET ?", (page - 1) * itemsInAPage);
+		sql.append("LIMIT ?", limitTake);
+		sql.append("OFFSET ?", limitFrom);
 		
 		return MysqlUtil.selectRows(sql, Article.class);
 	}
