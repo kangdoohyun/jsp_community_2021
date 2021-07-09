@@ -22,7 +22,7 @@
 				</c:if>
 				<div class="text-lg font-bold">
 					<span><i class="fas fa-bars"></i></span>
-					<span>전체 게시물 수 : ${articles.size()}</span>
+					<span>전체 게시물 수 : ${allArticles.size()}</span>
 				</div>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />

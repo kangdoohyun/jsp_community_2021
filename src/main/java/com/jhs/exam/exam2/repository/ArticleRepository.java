@@ -22,13 +22,15 @@ public class ArticleRepository {
 		return id;
 	}
 
-	public List<Article> getForPrintArticles() {
+	public List<Article> getForPrintArticles(int page, int itemsInAPage) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");
 		sql.append("ORDER BY A.id DESC");
+		sql.append("LIMIT ?", itemsInAPage);
+		sql.append("OFFSET ?", (page - 1) * itemsInAPage);
 		
 		return MysqlUtil.selectRows(sql, Article.class);
 	}
@@ -68,5 +70,16 @@ public class ArticleRepository {
 		sql.append("WHERE id = ?", id);
 		
 		return MysqlUtil.update(sql);
+	}
+
+	public List<Article> getArticles() {
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
+		sql.append("FROM article AS A");
+		sql.append("LEFT JOIN `member` AS M");
+		sql.append("ON M.id = A.memberId");
+		sql.append("ORDER BY A.id DESC");
+		
+		return MysqlUtil.selectRows(sql, Article.class);
 	}
 }
