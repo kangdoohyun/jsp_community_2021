@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="pageTitle" value="게시물 리스트" />
 <%@ include file="../part/head.jspf"%>
@@ -25,7 +26,7 @@
 						<span><i class="fas fa-bars"></i></span>
 						<span>전체 게시물 수</span>
 					</div> 
-					<span>${allArticles.size()}</span>
+					<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${allArticles.size()}" /></span>
 				</div>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />
