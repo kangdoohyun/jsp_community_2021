@@ -22,8 +22,8 @@ public class ArticleService {
 		return articleRepository.getArticles();
 	}
 	
-	public List<Article> getForPrintArticles(Member actor, int page, int itemsInAPage) {
-		List<Article> articles = articleRepository.getForPrintArticles(page, itemsInAPage);
+	public List<Article> getForPrintArticles(Member actor, int page, int itemsInAPage, String searchKeywordTypeCode, String searchKeyword) {
+		List<Article> articles = articleRepository.getForPrintArticles(page, itemsInAPage, searchKeywordTypeCode, searchKeyword);
 		
 		for(Article article : articles) {
 			updateForPrintData(actor, article);
