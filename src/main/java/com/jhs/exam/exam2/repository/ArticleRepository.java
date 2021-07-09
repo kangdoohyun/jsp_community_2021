@@ -28,11 +28,18 @@ public class ArticleRepository {
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");
-		if(searchKeywordTypeCode.equals("title") && searchKeyword.length() != 0) {
-			sql.append("WHERE A.title LIKE CONCAT('%', ?, '%')", searchKeyword);
-		}
-		else if(searchKeywordTypeCode.equals("body") && searchKeyword.length() != 0) {
-			sql.append("WHERE A.body LIKE CONCAT('%', ?, '%')", searchKeyword);
+		sql.append("WHERE 1");
+		if(searchKeyword.length() != 0) {
+			switch (searchKeywordTypeCode) {
+			case "title": 
+				sql.append("AND A.title LIKE CONCAT('%', ?, '%')", searchKeyword);
+				break;
+			case "body":
+				sql.append("AND A.body LIKE CONCAT('%', ?, '%')", searchKeyword);
+				break;
+			case "title,body":
+				sql.append("AND A.title LIKE CONCAT('%', ?, '%') OR A.body LIKE CONCAT('%', ?, '%')", searchKeyword, searchKeyword);
+			}
 		}
 		sql.append("ORDER BY A.id DESC");
 		sql.append("LIMIT ?", limitTake);
@@ -84,11 +91,18 @@ public class ArticleRepository {
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");
-		if(searchKeywordTypeCode.equals("title") && searchKeyword.length() != 0) {
-			sql.append("WHERE A.title LIKE CONCAT('%', ?, '%')", searchKeyword);
-		}
-		else if(searchKeywordTypeCode.equals("body") && searchKeyword.length() != 0) {
-			sql.append("WHERE A.body LIKE CONCAT('%', ?, '%')", searchKeyword);
+		sql.append("WHERE 1");
+		if(searchKeyword.length() != 0) {
+			switch (searchKeywordTypeCode) {
+			case "title": 
+				sql.append("AND A.title LIKE CONCAT('%', ?, '%')", searchKeyword);
+				break;
+			case "body":
+				sql.append("AND A.body LIKE CONCAT('%', ?, '%')", searchKeyword);
+				break;
+			case "title,body":
+				sql.append("AND A.title LIKE CONCAT('%', ?, '%') OR A.body LIKE CONCAT('%', ?, '%')", searchKeyword, searchKeyword);
+			}
 		}
 		sql.append("ORDER BY A.id DESC");
 		
