@@ -93,6 +93,27 @@
 					</div>
 					<hr />
 				</c:forEach>
+				<div class="page-select-box">
+					<c:if test="${blockStartNum == 1}">
+						<span class="text-gray-200"><i class="fas fa-chevron-left"></i></span>
+					</c:if>
+					<c:if test="${blockStartNum != 1}">
+						<a href="./list?page=${blockStartNum - 1}"><i class="fas fa-chevron-left"></i></a>
+					</c:if>
+					
+					
+					<c:forEach var="i" begin="${blockStartNum}" end="${blockLastNum}">
+						
+					    <a href="./list?page=${i}"><c:out value="${i}" /></a>
+					    
+					</c:forEach>
+					<c:if test="${endBlock <= blockNum}">
+						<span class="text-gray-200"><i class="fas fa-chevron-right"></i></span>
+					</c:if>
+					<c:if test="${endBlock > blockNum}">
+						<a href="./list?page=${blockLastNum + 1}"><i class="fas fa-chevron-right"></i></a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>

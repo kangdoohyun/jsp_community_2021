@@ -22,9 +22,8 @@ public class ArticleService {
 		return articleRepository.getArticles(searchKeywordTypeCode, searchKeyword);
 	}
 	
-	public List<Article> getForPrintArticles(Member actor, int page, int itemsInAPage, String searchKeywordTypeCode, String searchKeyword) {
-		int limitFrom = (page - 1) * itemsInAPage;
-		int limitTake = itemsInAPage;
+	public List<Article> getForPrintArticles(Member actor, int page, int itemsInAPage, int limitFrom, int limitTake, String searchKeywordTypeCode, String searchKeyword) {
+
 		List<Article> articles = articleRepository.getForPrintArticles(limitFrom, limitTake, searchKeywordTypeCode, searchKeyword);
 		
 		for(Article article : articles) {

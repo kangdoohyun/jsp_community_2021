@@ -99,12 +99,32 @@ public class UsrArticleController extends Controller {
 		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
 		String searchKeyword = rq.getParam("searchKeyword", "");
 		int itemsInAPage = 10;
+		int limitFrom = (page - 1) * itemsInAPage;
+		int limitTake = itemsInAPage;
 		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, itemsInAPage, searchKeywordTypeCode, searchKeyword);
+		
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, itemsInAPage, limitFrom, limitTake, searchKeywordTypeCode, searchKeyword);
 		List<Article> allArticles = articleService.getArticles(searchKeywordTypeCode, searchKeyword);
+		
+		int totalPage = allArticles.size() / itemsInAPage + 1;
+		
+				
+		int blockCount = 5;
+		int blockNum = (int)Math.floor((page-1)/ blockCount);
+		int blockStartNum = (blockCount * blockNum)  + 1;
+		int blockLastNum = blockStartNum + (blockCount - 1);
+		int endBlock = (int)Math.ceil(totalPage / 5);
+		System.out.println("blockNum : " + blockNum);
+		System.out.println("blockStartNum : " + blockStartNum);
+		System.out.println("blockLastNum : " + blockLastNum);
+		System.out.println("endBlock : " + endBlock);
 		
 		rq.setAttr("articles", articles);
 		rq.setAttr("allArticles", allArticles);
+		rq.setAttr("blockStartNum", blockStartNum);
+		rq.setAttr("blockLastNum", blockLastNum);
+		rq.setAttr("endBlock", endBlock);
+		rq.setAttr("blockNum", blockNum);
 		rq.jsp("usr/article/list");
 	}
 
