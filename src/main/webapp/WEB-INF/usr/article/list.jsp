@@ -101,12 +101,13 @@
 						<a href="./list?page=${blockStartNum - 1}"><i class="fas fa-chevron-left"></i></a>
 					</c:if>
 					
-					
 					<c:forEach var="i" begin="${blockStartNum}" end="${blockLastNum}">
-						
-					    <a href="./list?page=${i}"><c:out value="${i}" /></a>
-					    
+						<c:if test="${ i <= totalPage }">
+							<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
+							<a class="${aClassStr}" href="./list?page=${i}">${ i }</a>
+						</c:if>
 					</c:forEach>
+					
 					<c:if test="${endBlock <= blockNum}">
 						<span class="text-gray-200"><i class="fas fa-chevron-right"></i></span>
 					</c:if>
