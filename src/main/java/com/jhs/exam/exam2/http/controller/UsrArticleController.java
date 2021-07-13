@@ -105,15 +105,14 @@ public class UsrArticleController extends Controller {
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, itemsInAPage, limitFrom, limitTake, searchKeywordTypeCode, searchKeyword);
 		List<Article> allArticles = articleService.getArticles(searchKeywordTypeCode, searchKeyword);
 				
-		int blockCount = 5;
-		int blockNum = (int)Math.floor((page-1)/ blockCount);
-		int blockStartNum = (blockCount * blockNum)  + 1;
-		int blockLastNum = blockStartNum + (blockCount - 1);
-		
-		int totalPage = (int)Math.ceil((double)allArticles.size() / itemsInAPage);
-		
-		int endBlock = (int)Math.ceil(totalPage / 5);
-		
+		int blockCount = 5; // 페이지 블럭당 페이지 갯수.
+		int blockNum = (int)Math.floor(((page-1)/ blockCount) + 1); // 현제 페이지블럭 번호 # floor 내림 # (현제 페이지 - 1) / 블럭당 페이지갯수 # (6 - 1) / 5 + 1 = 2; 
+		int blockStartNum = (blockCount * (blockNum - 1))  + 1; // 현제 페이지블럭이 몇번 페이지부터 시작하는지 # (블럭당 페이지갯수 * 현제 페이지블럭 번호) + 1 # (5 * (2 - 1)) + 1 = 6;
+		int blockLastNum = blockStartNum + (blockCount - 1); // 현제 페이지블럭이 몇번 페이지까지 인지 # 페이지블럭 시작 페이지 + (블럭당 페이지갯수 - 1) # 6 + (5 - 1) = 10;
+		// double 을 걸어주는 이유는 실수 끼리 나누면 자동으로 자바가 나머지를 버림해서 실수로 넣어주기 때문이다.
+		int totalPage = (int)Math.ceil((double)allArticles.size() / itemsInAPage); // 총 페이지의 수 # ceil 올림 # 전체 게시물 수 / 페이지당 개시물 수 # 1024 / 10 = 102.4 (103); 
+		int endBlock = (int)Math.ceil((double)totalPage / blockCount); // 마지막 페이지 블럭 인덱스 # 총 페이지 수 / 페이지 블럭당 페이지 갯수 # 103 / 5 = 20.6 (21);	
+			
 		rq.setAttr("articles", articles);
 		rq.setAttr("allArticles", allArticles);
 		rq.setAttr("blockStartNum", blockStartNum);

@@ -93,26 +93,26 @@
 					</div>
 					<hr />
 				</c:forEach>
-				<div class="page-select-box">
+				<div class="page-menu flex justify-center items-center">
 					<c:if test="${blockStartNum == 1}">
-						<span class="text-gray-200"><i class="fas fa-chevron-left"></i></span>
+						<span class="prev text-gray-200"><i class="fas fa-chevron-left"></i></span>
 					</c:if>
 					<c:if test="${blockStartNum != 1}">
-						<a href="./list?page=${blockStartNum - 1}"><i class="fas fa-chevron-left"></i></a>
+						<a class="prev" href="./list?page=${blockStartNum - 1}"><i class="fas fa-chevron-left"></i></a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${blockStartNum}" end="${blockLastNum}">
 						<c:if test="${ i <= totalPage }">
 							<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
-							<a class="${aClassStr}" href="./list?page=${i}">${ i }</a>
+							<a class="page-menu__list ${aClassStr}" href="./list?page=${i}">${ i }</a>
 						</c:if>
 					</c:forEach>
 					
 					<c:if test="${endBlock <= blockNum}">
-						<span class="text-gray-200"><i class="fas fa-chevron-right"></i></span>
+						<span class="next text-gray-200"><i class="fas fa-chevron-right"></i></span>
 					</c:if>
 					<c:if test="${endBlock > blockNum}">
-						<a href="./list?page=${blockLastNum + 1}"><i class="fas fa-chevron-right"></i></a>
+						<a class="next" href="./list?page=${blockLastNum + 1}"><i class="fas fa-chevron-right"></i></a>
 					</c:if>
 				</div>
 			</div>

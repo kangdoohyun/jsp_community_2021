@@ -42,7 +42,14 @@
     grid-column: span 3 / span 3;
   }
 }
-.page-select-box{
-	text-align: center;
+.page-menu > .page-menu__list {
+	padding: 15px 5px; 
 }
-
+.page-menu > .prev {
+	display: block;
+	padding: 15px;
+}
+.page-menu > .next {
+	display: block;
+	padding: 15px;
+}
