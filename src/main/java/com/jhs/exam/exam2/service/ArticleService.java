@@ -18,13 +18,13 @@ public class ArticleService {
 		return ResultData.from("S-1", Ut.f("%d번 게시물이 생성되었습니다.", id), "id", id);
 	}
 	
-	public List<Article> getArticles(String searchKeywordTypeCode, String searchKeyword) {
-		return articleRepository.getArticles(searchKeywordTypeCode, searchKeyword);
+	public List<Article> getArticles(int boardId, String searchKeywordTypeCode, String searchKeyword) {
+		return articleRepository.getArticles(boardId, searchKeywordTypeCode, searchKeyword);
 	}
 	
-	public List<Article> getForPrintArticles(Member actor, int page, int itemsInAPage, int limitFrom, int limitTake, String searchKeywordTypeCode, String searchKeyword) {
+	public List<Article> getForPrintArticles(Member actor, int boardId,int page, int itemsInAPage, int limitFrom, int limitTake, String searchKeywordTypeCode, String searchKeyword) {
 
-		List<Article> articles = articleRepository.getForPrintArticles(limitFrom, limitTake, searchKeywordTypeCode, searchKeyword);
+		List<Article> articles = articleRepository.getForPrintArticles(boardId, limitFrom, limitTake, searchKeywordTypeCode, searchKeyword);
 		
 		for(Article article : articles) {
 			updateForPrintData(actor, article);

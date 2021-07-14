@@ -22,13 +22,18 @@ public class ArticleRepository {
 		return id;
 	}
 
-	public List<Article> getForPrintArticles(int limitFrom, int limitTake, String searchKeywordTypeCode, String searchKeyword) {
+	public List<Article> getForPrintArticles(int boardId,int limitFrom, int limitTake, String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");
+		sql.append("LEFT JOIN board AS B");
+		sql.append("ON A.boardId = B.id");
 		sql.append("WHERE 1");
+		if(boardId != 0) {
+			sql.append("AND B.id = ?", boardId);
+		}
 		if(searchKeyword.length() != 0) {
 			switch (searchKeywordTypeCode) {
 			case "title": 
@@ -85,13 +90,18 @@ public class ArticleRepository {
 		return MysqlUtil.update(sql);
 	}
 
-	public List<Article> getArticles(String searchKeywordTypeCode, String searchKeyword) {
+	public List<Article> getArticles(int boardId, String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");
+		sql.append("LEFT JOIN board AS B");
+		sql.append("ON A.boardId = B.id");
 		sql.append("WHERE 1");
+		if(boardId != 0) {
+			sql.append("AND B.id = ?", boardId);
+		}
 		if(searchKeyword.length() != 0) {
 			switch (searchKeywordTypeCode) {
 			case "title": 

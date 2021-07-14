@@ -94,17 +94,19 @@
 					<hr />
 				</c:forEach>
 				<div class="page-menu flex justify-center items-center">
+					<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
+					
 					<c:if test="${blockStartNum == 1}">
 						<span class="prev text-gray-200"><i class="fas fa-chevron-left"></i></span>
 					</c:if>
 					<c:if test="${blockStartNum != 1}">
-						<a class="prev" href="./list?page=${blockStartNum - 1}"><i class="fas fa-chevron-left"></i></a>
+						<a class="prev" href="./list?page=${blockStartNum - 1}&boardId=${bId}"><i class="fas fa-chevron-left"></i></a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${blockStartNum}" end="${blockLastNum}">
 						<c:if test="${ i <= totalPage }">
 							<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
-							<a class="page-menu__list ${aClassStr}" href="./list?page=${i}">${ i }</a>
+							<a class="page-menu__list ${aClassStr}" href="./list?page=${i}&boardId=${bId}">${ i }</a>
 						</c:if>
 					</c:forEach>
 					
@@ -112,7 +114,7 @@
 						<span class="next text-gray-200"><i class="fas fa-chevron-right"></i></span>
 					</c:if>
 					<c:if test="${endBlock > blockNum}">
-						<a class="next" href="./list?page=${blockLastNum + 1}"><i class="fas fa-chevron-right"></i></a>
+						<a class="next" href="./list?page=${blockLastNum + 1}&boardId=${bId}"><i class="fas fa-chevron-right"></i></a>
 					</c:if>
 				</div>
 			</div>

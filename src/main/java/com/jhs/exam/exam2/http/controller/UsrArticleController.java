@@ -96,14 +96,15 @@ public class UsrArticleController extends Controller {
 
 	private void actionShowList(Rq rq) {
 		int page = rq.getIntParam("page", 1);
+		int boardId = rq.getIntParam("boardId", 0);
 		String searchKeywordTypeCode = rq.getParam("searchKeywordTypeCode", "title");
 		String searchKeyword = rq.getParam("searchKeyword", "");
 		int itemsInAPage = 10;
 		int limitFrom = (page - 1) * itemsInAPage;
 		int limitTake = itemsInAPage;
 		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), page, itemsInAPage, limitFrom, limitTake, searchKeywordTypeCode, searchKeyword);
-		List<Article> allArticles = articleService.getArticles(searchKeywordTypeCode, searchKeyword);
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMember(), boardId, page, itemsInAPage, limitFrom, limitTake, searchKeywordTypeCode, searchKeyword);
+		List<Article> allArticles = articleService.getArticles(boardId, searchKeywordTypeCode, searchKeyword);
 				
 		int blockCount = 5; // 페이지 블럭당 페이지 갯수.
 		int blockNum = (int)Math.floor(((page-1)/ blockCount) + 1); // 현제 페이지블럭 번호 # floor 내림 # (현제 페이지 - 1) / 블럭당 페이지갯수 # (6 - 1) / 5 + 1 = 2; 
@@ -120,6 +121,7 @@ public class UsrArticleController extends Controller {
 		rq.setAttr("endBlock", endBlock);
 		rq.setAttr("blockNum", blockNum);
 		rq.setAttr("totalPage", totalPage);
+		rq.setAttr("boardId", boardId);
 		
 		rq.jsp("usr/article/list");
 	}
