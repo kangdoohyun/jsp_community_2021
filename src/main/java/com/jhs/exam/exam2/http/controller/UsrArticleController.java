@@ -115,7 +115,8 @@ public class UsrArticleController extends Controller {
 		// double 을 걸어주는 이유는 실수 끼리 나누면 자동으로 자바가 나머지를 버림해서 실수로 넣어주기 때문이다.
 		int totalPage = (int)Math.ceil((double)allArticles.size() / itemsInAPage); // 총 페이지의 수 # ceil 올림 # 전체 게시물 수 / 페이지당 개시물 수 # 1024 / 10 = 102.4 (103); 
 		int endBlock = (int)Math.ceil((double)totalPage / blockCount); // 마지막 페이지 블럭 인덱스 # 총 페이지 수 / 페이지 블럭당 페이지 갯수 # 103 / 5 = 20.6 (21);	
-			
+		
+		rq.setAttr("page", page);
 		rq.setAttr("articles", articles);
 		rq.setAttr("allArticles", allArticles);
 		rq.setAttr("blockStartNum", blockStartNum);

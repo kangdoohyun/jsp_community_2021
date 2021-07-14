@@ -112,27 +112,33 @@
 				</c:forEach>
 				<div class="page-menu flex justify-center items-center">
 					<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
+					<c:set var="pageMenuArmSize" value="4" />
+					<c:set var="startPage" value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
+					<c:set var="endPage" value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
 					
-					<c:if test="${blockStartNum == 1}">
+					<a class="first" href="./list?page=1&boardId=${bId}"><i class="fas fa-angle-double-left"></i></a>
+					<c:if test="${page == 1}">
 						<span class="prev text-gray-200"><i class="fas fa-chevron-left"></i></span>
 					</c:if>
-					<c:if test="${blockStartNum != 1}">
-						<a class="prev" href="./list?page=${blockStartNum - 1}&boardId=${bId}"><i class="fas fa-chevron-left"></i></a>
+					<c:if test="${page != 1}">
+						<a class="prev" href="./list?page=${page - 1}&boardId=${bId}"><i class="fas fa-chevron-left"></i></a>
 					</c:if>
 					
-					<c:forEach var="i" begin="${blockStartNum}" end="${blockLastNum}">
+					<c:forEach var="i" begin="${startPage}" end="${endPage}">
+						<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
+						<a class="page-menu__list ${aClassStr}" href="./list?page=${i}&boardId=${bId}">${ i }</a>
 						<c:if test="${ i <= totalPage }">
-							<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
-							<a class="page-menu__list ${aClassStr}" href="./list?page=${i}&boardId=${bId}">${ i }</a>
+							
 						</c:if>
 					</c:forEach>
 					
-					<c:if test="${endBlock <= blockNum}">
+					<c:if test="${page >= endPage}">
 						<span class="next text-gray-200"><i class="fas fa-chevron-right"></i></span>
 					</c:if>
-					<c:if test="${endBlock > blockNum}">
-						<a class="next" href="./list?page=${blockLastNum + 1}&boardId=${bId}"><i class="fas fa-chevron-right"></i></a>
+					<c:if test="${page < endPage}">
+						<a class="next" href="./list?page=${page + 1}&boardId=${bId}"><i class="fas fa-chevron-right"></i></a>
 					</c:if>
+					<a class="end" href="./list?page=${totalPage}&boardId=${bId}"><i class="fas fa-angle-double-right"></i></a>
 				</div>
 			</div>
 		</div>

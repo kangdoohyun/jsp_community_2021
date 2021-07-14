@@ -53,3 +53,11 @@
 	display: block;
 	padding: 15px;
 }
+.page-menu > .first {
+	display: block;
+	padding: 15px;
+}
+.page-menu > .end {
+	display: block;
+	padding: 15px 5px;
+}
