@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="pageTitle" value="게시물 리스트" />
 <%@ include file="../part/head.jspf"%>
@@ -17,37 +17,42 @@
 				<span>게시물 리스트</span>
 			</div>
 			<div class="px-4">
-				
+
 				<c:if test="${rq.logined}">
 					<button class="btn btn-link" onclick="location.href='./write'">글쓰기</button>
 				</c:if>
 				<div class="py-4 flex w-full">
 					<div>
 						<div class="badge badge-primary">
-							<span><i class="fas fa-bars"></i></span>
+							<span>
+								<i class="fas fa-bars"></i>
+							</span>
 							<span>전체 게시물 수</span>
 						</div>
-						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${allArticles.size()}" /></span>
+						<span>
+							<fmt:formatNumber type="number" maxFractionDigits="3"
+								value="${allArticles.size()}" />
+						</span>
 					</div>
 					<div class="flex-grow"></div>
-					<div>
+					<div class="search-box">
 						<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
 						<form class="flex" action="./list">
-							<input type="hidden" name="page" value="1"/>
-							<input type="hidden" name="boardId" value="${bId}"/>
-							<select class="select select-bordered" name="searchKeywordTypeCode">
+							<input type="hidden" name="page" value="1" /> <input
+								type="hidden" name="boardId" value="${bId}" /> <select
+								class="select select-bordered" name="searchKeywordTypeCode">
 								<option value="title">제목</option>
 								<option value="body">내용</option>
-								<option value="title,body">제목,내용</option>	
-							</select>
-							<input type="text" placeholder="검색어를 입력해주세요" name="searchKeyword" value="" class="input input-bordered mx-2">
+								<option value="title,body">제목,내용</option>
+							</select> <input type="text" placeholder="검색어를 입력해주세요"
+								name="searchKeyword" value="" class="input input-bordered mx-2">
 							<input type="submit" class="btn btn-outline" value="검색" />
 						</form>
 					</div>
 				</div>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />
-					
+
 					<div class="py-4">
 						<div class="grid gap-3" style="grid-template-columns: 100px 1fr;">
 							<a href="${detailUri}">
@@ -95,51 +100,99 @@
 						</a>
 						<div class="btns mt-3">
 							<c:if test="${article.extra__actorCanModify}">
-							<a href="../article/modify?id=${article.id}" class="btn btn-link">
-								<span><i class="fas fa-edit"></i></span>
-								<span>수정</span>
-							</a>
+								<a href="../article/modify?id=${article.id}"
+									class="btn btn-link">
+									<span>
+										<i class="fas fa-edit"></i>
+									</span>
+									<span>수정</span>
+								</a>
 							</c:if>
 							<c:if test="${article.extra__actorCanDelete}">
-							<a onclick="if ( !confirm('정말로 삭제하시겠습니까?') ) return false;" href="../article/doDelete?id=${article.id}" class="btn btn-link">
-								<span><i class="fas fa-trash-alt"></i></span>
-								<span>삭제</span>
-							</a>
+								<a onclick="if ( !confirm('정말로 삭제하시겠습니까?') ) return false;"
+									href="../article/doDelete?id=${article.id}"
+									class="btn btn-link">
+									<span>
+										<i class="fas fa-trash-alt"></i>
+									</span>
+									<span>삭제</span>
+								</a>
 							</c:if>
 						</div>
 					</div>
 					<hr />
 				</c:forEach>
-				<div class="page-menu flex justify-center items-center">
-					<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
-					<c:set var="pageMenuArmSize" value="4" />
-					<c:set var="startPage" value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
-					<c:set var="endPage" value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
-					
-					<a class="first" href="./list?page=1&boardId=${bId}"><i class="fas fa-angle-double-left"></i></a>
-					<c:if test="${page == 1}">
-						<span class="prev text-gray-200"><i class="fas fa-chevron-left"></i></span>
+			</div>
+			<!-- 페이지네이션 버전 1 -->
+			<div class="page-menu flex justify-center items-center">
+				<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
+				<c:set var="pageMenuArmSize" value="4" />
+				<c:set var="startPage"
+					value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
+				<c:set var="endPage"
+					value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
+
+				<a class="first" href="./list?page=1&boardId=${bId}">
+					<i class="fas fa-angle-double-left"></i>
+				</a>
+				<c:if test="${page == 1}">
+					<span class="prev text-gray-200">
+						<i class="fas fa-chevron-left"></i>
+					</span>
+				</c:if>
+				<c:if test="${page != 1}">
+					<a class="prev" href="./list?page=${page - 1}&boardId=${bId}">
+						<i class="fas fa-chevron-left"></i>
+					</a>
+				</c:if>
+
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<c:set var="aClassStr"
+						value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
+					<a class="page-menu__list ${aClassStr}"
+						href="./list?page=${i}&boardId=${bId}">${ i }</a>
+					<c:if test="${ i <= totalPage }">
+
 					</c:if>
-					<c:if test="${page != 1}">
-						<a class="prev" href="./list?page=${page - 1}&boardId=${bId}"><i class="fas fa-chevron-left"></i></a>
+				</c:forEach>
+
+				<c:if test="${page >= endPage}">
+					<span class="next text-gray-200">
+						<i class="fas fa-chevron-right"></i>
+					</span>
+				</c:if>
+				<c:if test="${page < endPage}">
+					<a class="next" href="./list?page=${page + 1}&boardId=${bId}">
+						<i class="fas fa-chevron-right"></i>
+					</a>
+				</c:if>
+				<a class="end" href="./list?page=${totalPage}&boardId=${bId}">
+					<i class="fas fa-angle-double-right"></i>
+				</a>
+			</div>
+			<!-- 페이지네이션 버전 2 -->
+			<div class="btn-group flex justify-center py-2">
+				<c:set var="pageArm" value="4" />
+				<c:set var="startPage"
+					value="${page - pageArm >= 1 ? page - pageArm : 1 }" />
+				<c:set var="endPage"
+					value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
+				<c:if test="${startPage > 1}">
+					<a class="btn btn-sm" href="?page=1">1</a>
+					<c:if test="${page - pageArm != 2}">
+						<button class="btn btn-sm btn-disabled">...</button>
 					</c:if>
-					
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
-						<a class="page-menu__list ${aClassStr}" href="./list?page=${i}&boardId=${bId}">${ i }</a>
-						<c:if test="${ i <= totalPage }">
-							
-						</c:if>
-					</c:forEach>
-					
-					<c:if test="${page >= endPage}">
-						<span class="next text-gray-200"><i class="fas fa-chevron-right"></i></span>
+				</c:if>
+				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+					<c:set var="activeBtn" value="${page == i ? 'btn-active' : ''}" />
+					<a class="btn btn-sm ${activeBtn}" href="?page=${i}">${i}</a>
+				</c:forEach>
+				<c:if test="${totalPage > endPage}">
+					<c:if test="${page + pageArm != totalPage - 1}">
+						<button class="btn btn-sm btn-disabled">...</button>
 					</c:if>
-					<c:if test="${page < endPage}">
-						<a class="next" href="./list?page=${page + 1}&boardId=${bId}"><i class="fas fa-chevron-right"></i></a>
-					</c:if>
-					<a class="end" href="./list?page=${totalPage}&boardId=${bId}"><i class="fas fa-angle-double-right"></i></a>
-				</div>
+					<a class="btn btn-sm" href="?page=${totalPage}">${totalPage}</a>
+				</c:if>
 			</div>
 		</div>
 	</div>
