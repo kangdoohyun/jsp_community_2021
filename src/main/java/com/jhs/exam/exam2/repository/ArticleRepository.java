@@ -24,7 +24,7 @@ public class ArticleRepository {
 
 	public List<Article> getForPrintArticles(int boardId,int limitFrom, int limitTake, String searchKeywordTypeCode, String searchKeyword) {
 		SecSql sql = new SecSql();
-		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName");
+		sql.append("SELECT A.*, IFNULL(M.nickname, \"탈퇴한 회원\") AS extra__writerName, B.name");
 		sql.append("FROM article AS A");
 		sql.append("LEFT JOIN `member` AS M");
 		sql.append("ON M.id = A.memberId");

@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.jhs.exam.exam2.container.Container;
 import com.jhs.exam.exam2.dto.Article;
+import com.jhs.exam.exam2.dto.Board;
 import com.jhs.exam.exam2.dto.Member;
 import com.jhs.exam.exam2.dto.ResultData;
 import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.service.ArticleService;
+import com.jhs.exam.exam2.service.BoardService;
 import com.jhs.exam.exam2.service.MemberService;
 import com.jhs.exam.exam2.util.Ut;
 
@@ -122,6 +124,7 @@ public class UsrArticleController extends Controller {
 		rq.setAttr("blockNum", blockNum);
 		rq.setAttr("totalPage", totalPage);
 		rq.setAttr("boardId", boardId);
+		rq.setAttr("searchKeyword", searchKeyword);
 		
 		rq.jsp("usr/article/list");
 	}

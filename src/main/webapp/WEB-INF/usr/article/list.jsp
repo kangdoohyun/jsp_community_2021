@@ -21,12 +21,29 @@
 				<c:if test="${rq.logined}">
 					<button class="btn btn-link" onclick="location.href='./write'">글쓰기</button>
 				</c:if>
-				<div class="py-4">
-					<div class="badge badge-primary">
-						<span><i class="fas fa-bars"></i></span>
-						<span>전체 게시물 수</span>
-					</div> 
-					<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${allArticles.size()}" /></span>
+				<div class="py-4 flex w-full">
+					<div>
+						<div class="badge badge-primary">
+							<span><i class="fas fa-bars"></i></span>
+							<span>전체 게시물 수</span>
+						</div>
+						<span><fmt:formatNumber type="number" maxFractionDigits="3" value="${allArticles.size()}" /></span>
+					</div>
+					<div class="flex-grow"></div>
+					<div>
+						<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
+						<form class="flex" action="./list">
+							<input type="hidden" name="page" value="1"/>
+							<input type="hidden" name="boardId" value="${bId}"/>
+							<select class="select select-bordered" name="searchKeywordTypeCode">
+								<option value="title">제목</option>
+								<option value="body">내용</option>
+								<option value="title,body">제목,내용</option>	
+							</select>
+							<input type="text" placeholder="검색어를 입력해주세요" name="searchKeyword" value="" class="input input-bordered mx-2">
+							<input type="submit" class="btn btn-outline" value="검색" />
+						</form>
+					</div>
 				</div>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />
