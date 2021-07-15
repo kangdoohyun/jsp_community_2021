@@ -126,6 +126,7 @@ public class UsrArticleController extends Controller {
 		rq.setAttr("totalPage", totalPage);
 		rq.setAttr("boardId", boardId);
 		rq.setAttr("searchKeyword", searchKeyword);
+		rq.setAttr("searchKeywordTypeCode", searchKeywordTypeCode);
 		
 		rq.jsp("usr/article/list");
 	}

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -36,10 +37,9 @@
 					</div>
 					<div class="flex-grow"></div>
 					<div class="search-box">
-						<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
-						<form class="flex" action="./list">
+						<form class="flex" action="./list" method="GET">
 							<input type="hidden" name="page" value="1" /> <input
-								type="hidden" name="boardId" value="${bId}" /> <select
+								type="hidden" name="boardId" value="${boardId}" /> <select
 								class="select select-bordered" name="searchKeywordTypeCode">
 								<option value="title">제목</option>
 								<option value="body">내용</option>
@@ -125,14 +125,14 @@
 			</div>
 			<!-- 페이지네이션 버전 1 -->
 			<div class="page-menu flex justify-center items-center">
-				<c:set var="bId" value="${boardId != 0 ? boardId : 0}" />
+				
 				<c:set var="pageMenuArmSize" value="4" />
 				<c:set var="startPage"
 					value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
 				<c:set var="endPage"
 					value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
 
-				<a class="first" href="./list?page=1&boardId=${bId}">
+				<a class="first" href="./list?page=1&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
 					<i class="fas fa-angle-double-left"></i>
 				</a>
 				<c:if test="${page == 1}">
@@ -141,7 +141,7 @@
 					</span>
 				</c:if>
 				<c:if test="${page != 1}">
-					<a class="prev" href="./list?page=${page - 1}&boardId=${bId}">
+					<a class="prev" href="./list?page=${page - 1}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
 						<i class="fas fa-chevron-left"></i>
 					</a>
 				</c:if>
@@ -150,10 +150,7 @@
 					<c:set var="aClassStr"
 						value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
 					<a class="page-menu__list ${aClassStr}"
-						href="./list?page=${i}&boardId=${bId}">${ i }</a>
-					<c:if test="${ i <= totalPage }">
-
-					</c:if>
+						href="./list?page=${i}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">${ i }</a>
 				</c:forEach>
 
 				<c:if test="${page >= endPage}">
@@ -162,11 +159,11 @@
 					</span>
 				</c:if>
 				<c:if test="${page < endPage}">
-					<a class="next" href="./list?page=${page + 1}&boardId=${bId}">
+					<a class="next" href="./list?page=${page + 1}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
 						<i class="fas fa-chevron-right"></i>
 					</a>
 				</c:if>
-				<a class="end" href="./list?page=${totalPage}&boardId=${bId}">
+				<a class="end" href="./list?page=${totalPage}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
 					<i class="fas fa-angle-double-right"></i>
 				</a>
 			</div>
@@ -178,20 +175,20 @@
 				<c:set var="endPage"
 					value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
 				<c:if test="${startPage > 1}">
-					<a class="btn btn-sm" href="?page=1">1</a>
+					<a class="btn btn-sm" href="?page=1&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">1</a>
 					<c:if test="${page - pageArm != 2}">
 						<button class="btn btn-sm btn-disabled">...</button>
 					</c:if>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<c:set var="activeBtn" value="${page == i ? 'btn-active' : ''}" />
-					<a class="btn btn-sm ${activeBtn}" href="?page=${i}">${i}</a>
+					<a class="btn btn-sm ${activeBtn}" href="?page=${i}&boardId=${boardId}&searchKeyword=${searchKeyword}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">${i}</a>
 				</c:forEach>
 				<c:if test="${totalPage > endPage}">
 					<c:if test="${page + pageArm != totalPage - 1}">
 						<button class="btn btn-sm btn-disabled">...</button>
 					</c:if>
-					<a class="btn btn-sm" href="?page=${totalPage}">${totalPage}</a>
+					<a class="btn btn-sm" href="?page=${totalPage}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">${totalPage}</a>
 				</c:if>
 			</div>
 		</div>
