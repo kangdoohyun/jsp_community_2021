@@ -37,12 +37,6 @@
 					</div>
 					<div class="flex-grow"></div>
 					<div class="search-box">
-						<script>
-							$( document ).ready(function() {
-							    $("select[name='searchKeywordTypeCode']").val((('${param.searchKeywordTypeCode}' == '') ? "" : '${param.searchKeywordTypeCode}')).prop("selected", true);
-							});
-						</script>
-						
 						<form class="flex" action="./list" method="GET">
 							<input type="hidden" name="page" value="1" /> <input
 								type="hidden" name="boardId" value="${boardId}" /> 
@@ -50,7 +44,12 @@
 								<option value="title">제목</option>
 								<option value="body">내용</option>
 								<option value="title,body">제목,내용</option>
-							</select> 
+							</select>
+							<c:if test="${param.searchKeywordTypeCode != null}">
+								<script>
+								$("select[name='searchKeywordTypeCode']").val('${param.searchKeywordTypeCode}');
+								</script>
+							</c:if>
 							<input type="text" placeholder="검색어를 입력해주세요"
 								name="searchKeyword" value="" class="input input-bordered mx-2">
 							<input type="submit" class="btn btn-outline" value="검색" />
