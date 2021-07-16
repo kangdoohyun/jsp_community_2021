@@ -39,12 +39,18 @@
 					<div class="search-box">
 						<form class="flex" action="./list" method="GET">
 							<input type="hidden" name="page" value="1" /> <input
-								type="hidden" name="boardId" value="${boardId}" /> <select
-								class="select select-bordered" name="searchKeywordTypeCode">
-								<option value="title">제목</option>
-								<option value="body">내용</option>
-								<option value="title,body">제목,내용</option>
-							</select> <input type="text" placeholder="검색어를 입력해주세요"
+								type="hidden" name="boardId" value="${boardId}" /> 
+							<select class="select select-bordered" name="searchKeywordTypeCode">
+								
+								<c:set var="selectTitle" value="${searchKeywordTypeCode.equals('title') ? 'selected' : ''}" />
+								<c:set var="selectBody" value="${searchKeywordTypeCode.equals('body') ? 'selected' : ''}" />
+								<c:set var="selectTitleAndBody" value="${searchKeywordTypeCode.equals('title,body') ? 'selected' : ''}" />
+								
+								<option ${selectTitle} value="title">제목</option>
+								<option ${selectBody} value="body">내용</option>
+								<option ${selectTitleAndBody} value="title,body">제목,내용</option>
+							</select> 
+							<input type="text" placeholder="검색어를 입력해주세요"
 								name="searchKeyword" value="" class="input input-bordered mx-2">
 							<input type="submit" class="btn btn-outline" value="검색" />
 						</form>
