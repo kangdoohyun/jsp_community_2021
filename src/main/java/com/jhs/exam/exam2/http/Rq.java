@@ -2,6 +2,9 @@ package com.jhs.exam.exam2.http;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -207,5 +210,51 @@ public class Rq {
 		}
 
 		return attrValue;
+	}
+	
+	private Map<String, Object> getParamMap() {
+		Map<String, Object> params = new HashMap<>();
+
+		Enumeration<String> parameterNames = req.getParameterNames();
+
+		while (parameterNames.hasMoreElements()) {
+			String paramName = parameterNames.nextElement();
+			Object paramValue = req.getParameter(paramName);
+
+			params.put(paramName, paramValue);
+		}
+
+		return params;
+	}
+
+	public String getParamMapJsonStr() {
+		return Ut.toJson(getParamMap(), "");
+	}
+	
+	private Map<String, Object> getBaseTypeAttrMap() {
+		Map<String, Object> attrs = new HashMap<>();
+
+		Enumeration<String> attrNames = req.getAttributeNames();
+
+		while (attrNames.hasMoreElements()) {
+			String attrName = attrNames.nextElement();
+			Object attrValue = req.getAttribute(attrName);
+
+			if ( attrName.equals("rq") ) {
+				continue;
+			}
+
+			if ( Ut.isBaseType(attrValue) == false ) {
+				continue;
+			}
+
+			attrs.put(attrName, attrValue);
+		}
+
+		return attrs;
+	}
+
+	public String getBaseTypeAttrMapJsonStr() {
+		return Ut.toJson(getBaseTypeAttrMap(), "");
 	}
 }

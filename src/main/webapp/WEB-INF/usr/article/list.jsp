@@ -45,11 +45,16 @@
 								<option value="body">내용</option>
 								<option value="title,body">제목,내용</option>
 							</select>
-							<c:if test="${param.searchKeywordTypeCode != null}">
+							<%-- <c:if test="${param.searchKeywordTypeCode != null}">
 								<script>
 								$("select[name='searchKeywordTypeCode']").val('${param.searchKeywordTypeCode}');
 								</script>
-							</c:if>
+							</c:if> --%>
+							<script>
+								if ( rqParams.searchKeywordTypeCode.trim().length > 0 ) {
+									$('.section-article-write select[name="searchKeywordTypeCode"]').val(rqParams.searchKeywordTypeCode);
+								}
+							</script>
 							<input type="text" placeholder="검색어를 입력해주세요"
 								name="searchKeyword" value="" class="input input-bordered mx-2">
 							<input type="submit" class="btn btn-outline" value="검색" />
