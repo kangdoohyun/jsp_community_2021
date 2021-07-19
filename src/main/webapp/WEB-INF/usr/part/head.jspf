@@ -83,14 +83,16 @@
 					</li>
 					<c:if test="${rq.notLogined}">
 						<li>
-							<a href="../member/login"
-								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
-								<span>
-									<i class="fas fa-sign-in-alt"></i>
-								</span>
-								&nbsp;
-								<span>LOGIN</span>
-							</a>
+							<form class="h-full" action="../member/login" method="POST">
+								<input type="hidden" name="url" value="${rq.getRequestURL()}?${rq.getQueryString()}" />
+								<button type="submit" class="h-full flex items-center px-4 hover:underline hover:text-red-500">
+									<span>
+										<i class="fas fa-sign-in-alt"></i>
+									</span>
+									&nbsp;
+									<span>LOGIN</span>	
+								</button>
+							</form>
 						</li>
 						<li>
 							<a href="#"

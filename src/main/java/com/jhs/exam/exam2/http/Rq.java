@@ -137,6 +137,20 @@ public class Rq {
 		println("history.back();");
 		println("</script>");
 	}
+	
+	public StringBuffer getRequestURL() {
+		return req.getRequestURL();
+	}
+	
+	public String getQueryString() {
+		return req.getQueryString();
+	}
+	
+	public void historyGo(int num) {
+		println("<script>");
+		println("history.go("+num+");");
+		println("</script>");
+	}
 
 	public void println(Object obj) {
 		println(obj.toString());
