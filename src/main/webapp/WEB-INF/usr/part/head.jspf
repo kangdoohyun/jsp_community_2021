@@ -89,16 +89,13 @@ const rqParams = ${rq.paramMapJsonStr};
 					</li>
 					<c:if test="${rq.notLogined}">
 						<li>
-							<form class="h-full" action="../member/login" method="POST">
-								<input type="hidden" name="url" value="${rq.getRequestURL()}?${rq.getQueryString()}" />
-								<button type="submit" class="h-full flex items-center px-4 hover:underline hover:text-red-500">
-									<span>
-										<i class="fas fa-sign-in-alt"></i>
-									</span>
-									&nbsp;
-									<span>LOGIN</span>	
-								</button>
-							</form>
+							<a href="../member/login?beforeLoginUrl=${rq.encodedCurrentUri}"
+								class="h-full flex items-center px-4 hover:underline hover:text-red-500">
+								<span>
+									<i class="fas fa-sign-in-alt"></i>
+								</span>
+								<span>LOGIN</span>
+							</a>
 						</li>
 						<li>
 							<a href="#"

@@ -140,15 +140,7 @@ public class Rq {
 		println("history.back();");
 		println("</script>");
 	}
-	
-	public StringBuffer getRequestURL() {
-		return req.getRequestURL();
-	}
-	
-	public String getQueryString() {
-		return req.getQueryString();
-	}
-	
+		
 	public void historyGo(int num) {
 		println("<script>");
 		println("history.go("+num+");");
@@ -256,5 +248,20 @@ public class Rq {
 
 	public String getBaseTypeAttrMapJsonStr() {
 		return Ut.toJson(getBaseTypeAttrMap(), "");
+	}
+	
+	public String getCurrentUri() {
+		String uri = req.getRequestURI();
+		String queryStr = req.getQueryString();
+
+		if ( queryStr != null && queryStr.length() > 0 ) {
+			uri += "?" + queryStr;
+		}
+
+		return uri;
+	}
+
+	public String getEncodedCurrentUri() {
+		return Ut.getUriEncoded(getCurrentUri());
 	}
 }

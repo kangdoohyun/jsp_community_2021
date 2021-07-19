@@ -1,5 +1,6 @@
 package com.jhs.exam.exam2.util;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -101,5 +102,13 @@ public class Ut {
 		}
 		return false;
 	}
+
+	public static String getUriEncoded(String str) {
+        try {
+            return URLEncoder.encode(str, "UTF-8");
+        } catch (Exception e) {
+            return str;
+        }
+    }
 
 }

@@ -42,9 +42,9 @@
 						MemberLogin__submitDone = true;
 					}
 				</script>
-				<form action="../member/doLogin" method="POST"
+				<form action="../member/doLogin" method="GET"
 					onsubmit="MemberLogin__submit(this); return false;">
-					<input type="hidden" name="url" value="${param.url}"/>
+					<input type="hidden" name="redirectUri" value="${param.beforeLoginUrl}"/>
 					<div class="form-control">
 						<label class="label">
 							<span class="label-text">로그인아이디</span>
