@@ -24,10 +24,22 @@
 				</c:if>
 				<div class="py-4 flex w-full">
 					<div>
+						<c:if test="${param.searchKeyword != null && param.searchKeyword != ''}">
+							<div class="badge badge-primary">
+								검색어 타입
+							</div>
+							<span>${param.searchKeywordTypeCode}</span>
+							
+							<br />
+						
+							<div class="badge badge-primary">
+								검색어
+							</div>
+							<span>${param.searchKeyword}</span>
+							
+							<br />
+						</c:if>
 						<div class="badge badge-primary">
-							<span>
-								<i class="fas fa-bars"></i>
-							</span>
 							<span>전체 게시물 수</span>
 						</div>
 						<span>
@@ -45,11 +57,6 @@
 								<option value="body">내용</option>
 								<option value="title,body">제목,내용</option>
 							</select>
-							<%-- <c:if test="${param.searchKeywordTypeCode != null}">
-								<script>
-								$("select[name='searchKeywordTypeCode']").val('${param.searchKeywordTypeCode}');
-								</script>
-							</c:if> --%>
 							<script>
 								if ( rqParams.searchKeywordTypeCode.trim().length > 0 ) {
 									$('.section-article-write select[name="searchKeywordTypeCode"]').val(rqParams.searchKeywordTypeCode);
@@ -134,6 +141,11 @@
 					<hr />
 				</c:forEach>
 			</div>
+			
+			<c:set var="baseUri" value="?boardId=${boardId}" />
+			<c:set var="baseUri" value="${baseUri}&searchKeywordTypeCode=${param.searchKeywordTypeCode}" />
+			<c:set var="baseUri" value="${baseUri}&searchKeyword=${param.searchKeyword}" />
+			
 			<!-- 페이지네이션 버전 1 -->
 			<div class="page-menu flex justify-center items-center">
 				
@@ -143,7 +155,7 @@
 				<c:set var="endPage"
 					value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
 
-				<a class="first" href="./list?page=1&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
+				<a class="first" href="${baseUri}&page=1">
 					<i class="fas fa-angle-double-left"></i>
 				</a>
 				<c:if test="${page == 1}">
@@ -152,7 +164,7 @@
 					</span>
 				</c:if>
 				<c:if test="${page != 1}">
-					<a class="prev" href="./list?page=${page - 1}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
+					<a class="prev" href="${baseUri}&page=${page - 1}">
 						<i class="fas fa-chevron-left"></i>
 					</a>
 				</c:if>
@@ -161,7 +173,7 @@
 					<c:set var="aClassStr"
 						value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
 					<a class="page-menu__list ${aClassStr}"
-						href="./list?page=${i}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">${ i }</a>
+						href="${baseUri}&page=${i}">${ i }</a>
 				</c:forEach>
 
 				<c:if test="${page >= endPage}">
@@ -170,11 +182,11 @@
 					</span>
 				</c:if>
 				<c:if test="${page < endPage}">
-					<a class="next" href="./list?page=${page + 1}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
+					<a class="next" href="${baseUri}&page=${page + 1}">
 						<i class="fas fa-chevron-right"></i>
 					</a>
 				</c:if>
-				<a class="end" href="./list?page=${totalPage}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">
+				<a class="end" href="${baseUri}&page=${totalPage}">
 					<i class="fas fa-angle-double-right"></i>
 				</a>
 			</div>
@@ -186,20 +198,20 @@
 				<c:set var="endPage"
 					value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
 				<c:if test="${startPage > 1}">
-					<a class="btn btn-sm" href="?page=1&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">1</a>
+					<a class="btn btn-sm" href="${baseUri}&page=1">1</a>
 					<c:if test="${page - pageArm != 2}">
 						<button class="btn btn-sm btn-disabled">...</button>
 					</c:if>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 					<c:set var="activeBtn" value="${page == i ? 'btn-active' : ''}" />
-					<a class="btn btn-sm ${activeBtn}" href="?page=${i}&boardId=${boardId}&searchKeyword=${searchKeyword}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">${i}</a>
+					<a class="btn btn-sm ${activeBtn}" href="${baseUri}&page=${i}">${i}</a>
 				</c:forEach>
 				<c:if test="${totalPage > endPage}">
 					<c:if test="${page + pageArm != totalPage - 1}">
 						<button class="btn btn-sm btn-disabled">...</button>
 					</c:if>
-					<a class="btn btn-sm" href="?page=${totalPage}&boardId=${boardId}&searchKeywordTypeCode=${searchKeywordTypeCode}&searchKeyword=${searchKeyword}">${totalPage}</a>
+					<a class="btn btn-sm" href="${baseUri}&page=${totalPage}">${totalPage}</a>
 				</c:if>
 			</div>
 		</div>
