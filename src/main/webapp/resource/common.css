@@ -4,9 +4,24 @@
   --card-title_height:40px;
   --card-title_left-btn-cell-width:50px;
 }
-
+/* 데이지 UI 커스텀 시작*/
+.badge-primary {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255,127,80);
+    --tw-border-opacity: 1;
+    border-color: rgb(255,127,80);
+    --tw-text-opacity: 1;
+    color: hsla(var(--pc)/var(--tw-text-opacity,1));
+}
+.btn-link {
+    background-color: transparent;
+    border-color: transparent;
+    --tw-text-opacity: 1;
+    color: rgb(255,127,80);
+}
+/* 데이지 UI 커스텀 끝*/
 .card-title {
-  background-color:rgb(87, 13, 248);
+  background-color:rgb(255,127,80);
   color:white;
   text-align:center;
   height:var(--card-title_height);
@@ -60,4 +75,33 @@
 .page-menu > .end {
 	display: block;
 	padding: 15px 5px;
+}
+
+@media (max-width: 480px) {
+  .card-wrap.max-w-md {
+    max-width:none;
+  }
+
+  .card-wrap.max-w-md > .card {
+    overflow: visible;
+    border-radius:0;
+  }
+}
+
+.btns {
+  margin-top:10px;	
+}
+
+@media (max-width: 360px) {
+  .logo-text-mini {
+    display:block; 
+  }
+
+  .logo-text-full {
+    display:none; 
+  }
+}
+.shadow-top {
+	--tw-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);;
 }

@@ -40,13 +40,14 @@ const rqParams = ${rq.paramMapJsonStr};
 <body>
 	<div class="site-wrap flex flex-col min-h-screen">
 		<div class="h-10 flex-shrink-0s mb-4"></div>
-		<header class="top-bar h-10 font-bold border-b fixed z-50 inset-0 bg-white">
+		<header class="top-bar h-10 font-bold shadow-md fixed z-50 inset-0 bg-white">
 			<div class="h-full container mx-auto flex">
 				<a href="../../" class="top-bar__logo flex items-center px-4 hover:underline hover:text-red-500">
 					<span>
 						<i class="far fa-lemon"></i>
 					</span>
-					<span class="hidden md:block">&nbsp; 레몬 커뮤니티 </span>
+					<span class="logo-text-full">&nbsp;Lemon</span>
+					<span class="logo-text-mini hidden">&nbsp;LM</span>
 				</a>
 
 				<div class="flex-grow"></div>
