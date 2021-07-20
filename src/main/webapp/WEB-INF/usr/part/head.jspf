@@ -42,15 +42,15 @@ const rqParams = ${rq.paramMapJsonStr};
 
 <body>
 
-	<header class="top-bar h-20 font-bold">
+	<header class="top-bar h-10 font-bold border-b">
 		<div class="h-full container mx-auto flex">
 			<a href="../../"
 				class="top-bar__logo flex items-center px-4 hover:underline hover:text-red-500">
 				<span>
 					<i class="far fa-lemon"></i>
 				</span>
-				&nbsp;
-				<span> 레몬 커뮤니티 </span>
+				
+				<span class="hidden md:block">&nbsp; 레몬 커뮤니티 </span>
 			</a>
 
 			<div class="flex-grow"></div>
@@ -63,8 +63,7 @@ const rqParams = ${rq.paramMapJsonStr};
 							<span>
 								<i class="fas fa-home"></i>
 							</span>
-							&nbsp;
-							<span>HOME</span>
+							<span class="hidden sm:block">&nbsp;HOME</span>
 						</a>
 					</li>
 					<li>
@@ -73,8 +72,7 @@ const rqParams = ${rq.paramMapJsonStr};
 							<span>
 								<i class="fas fa-flag"></i>
 							</span>
-							&nbsp;
-							<span>NOTICE LIST</span>
+							<span class="hidden sm:block">&nbsp;NOTICE LIST</span>
 						</a>
 					</li>
 					<li>
@@ -83,8 +81,7 @@ const rqParams = ${rq.paramMapJsonStr};
 							<span>
 								<i class="fab fa-free-code-camp"></i>
 							</span>
-							&nbsp;
-							<span>FREE LIST</span>
+							<span class="hidden sm:block">&nbsp;FREE LIST</span>
 						</a>
 					</li>
 					<c:if test="${rq.notLogined}">
@@ -94,7 +91,7 @@ const rqParams = ${rq.paramMapJsonStr};
 								<span>
 									<i class="fas fa-sign-in-alt"></i>
 								</span>
-								<span>LOGIN</span>
+								<span class="hidden sm:block">&nbsp;LOGIN</span>
 							</a>
 						</li>
 						<li>
@@ -103,7 +100,7 @@ const rqParams = ${rq.paramMapJsonStr};
 								<span>
 									<i class="fas fa-user-plus"></i>
 								</span>
-								<span>JOIN</span>
+								<span class="hidden sm:block">&nbsp;JOIN</span>
 							</a>
 						</li>
 					</c:if>
@@ -114,8 +111,7 @@ const rqParams = ${rq.paramMapJsonStr};
 								<span>
 									<i class="fas fa-sign-out-alt"></i>
 								</span>
-								&nbsp;
-								<span>LOGOUT</span>
+								<span class="hidden sm:block">&nbsp;LOGOUT</span>
 							</a>
 						</li>
 						<li>
@@ -124,7 +120,7 @@ const rqParams = ${rq.paramMapJsonStr};
 								<span>
 									<i class="fas fa-user"></i>
 								</span>
-								<span>MY PAGE</span>
+								<span class="hidden sm:block">&nbsp;MY PAGE</span>
 							</a>
 						</li>
 					</c:if>
