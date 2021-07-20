@@ -14,6 +14,7 @@ import com.jhs.exam.exam2.service.MemberService;
 import com.jhs.exam.exam2.util.Ut;
 
 public class UsrArticleController extends Controller {
+	private BoardService boardService = Container.boardService;
 	private ArticleService articleService = Container.articleService;
 	private MemberService memberService = Container.memberService;
 
@@ -136,7 +137,7 @@ public class UsrArticleController extends Controller {
 		String body = rq.getParam("body", "");
 		String redirectUri = rq.getParam("redirectUri", "../article/list");
 		int memberId = rq.getLoginedMemberId();
-		int boardId = 2;
+		int boardId = rq.getIntParam("boardId", 0);
 
 		if (title.length() == 0) {
 			rq.historyBack("title을 입력해주세요.");
@@ -145,6 +146,11 @@ public class UsrArticleController extends Controller {
 
 		if (body.length() == 0) {
 			rq.historyBack("body를 입력해주세요.");
+			return;
+		}
+		
+		if (boardId == 0) {
+			rq.historyBack("boardId를 입력해주세요.");
 			return;
 		}
 
@@ -157,6 +163,9 @@ public class UsrArticleController extends Controller {
 	}
 
 	private void actionShowWrite(Rq rq) {
+		List<Board> boards = boardService.getBoards();
+		
+		rq.setAttr("boards", boards);
 		rq.jsp("usr/article/write");
 	}
 

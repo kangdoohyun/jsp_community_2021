@@ -37,6 +37,13 @@
 
 							return;
 						}
+						
+						if (form.boardId.value == 0) {
+							alert('게시판을 선택해주세요.');
+							form.boardId.focus();
+
+							return;
+						}
 
 						form.submit();
 						ArticleWrite__submitDone = true;
@@ -46,6 +53,17 @@
 					onsubmit="ArticleWrite__submit(this); return false;">
 					<input type="hidden" name="redirectUri"
 						value="../article/detail?id=[NEW_ID]" />
+
+					<select name="boardId" class="select select-bordered select-sm w-full max-w-xs">
+						<option disabled="disabled" value="0">게시판을 선택해주세요.</option>
+						<c:forEach var="board" items="${boards}">
+							<option value="${board.id}">${board.name}</option>
+						</c:forEach>
+					</select>
+					<script>
+						$('.section-article-write select[name="boardId"]').val(rqParams.boardId);
+					</script>
+
 					<div class="form-control">
 						<label class="label">
 							<span class="label-text">제목</span>

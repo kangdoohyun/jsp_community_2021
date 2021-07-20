@@ -7,7 +7,7 @@
 <c:set var="pageTitle" value="게시물 리스트" />
 <%@ include file="../part/head.jspf"%>
 
-<section class="section section-article-write px-4">
+<section class="section section-article-list px-4">
 	<div class="container mx-auto">
 
 		<div class="card bordered shadow-lg">
@@ -19,9 +19,9 @@
 			</div>
 			<div class="px-4">
 
-				<c:if test="${rq.logined}">
-					<button class="btn btn-link" onclick="location.href='./write'">글쓰기</button>
-				</c:if>
+				<%-- <c:if test="${rq.logined}"> --%>
+					<a class="btn btn-link" href="./write?boardId=${boardId}">글 쓰기</a>
+				<%-- </c:if> --%>
 				<div class="py-4 flex w-full">
 					<div>
 						<c:if test="${param.searchKeyword != null && param.searchKeyword != ''}">
@@ -58,9 +58,7 @@
 								<option value="title,body">제목,내용</option>
 							</select>
 							<script>
-								if ( rqParams.searchKeywordTypeCode.trim().length > 0 ) {
-									$('.section-article-write select[name="searchKeywordTypeCode"]').val(rqParams.searchKeywordTypeCode);
-								}
+								$('.section-article-list select[name="searchKeywordTypeCode"]').val(rqParams.searchKeywordTypeCode);
 							</script>
 							<input type="text" placeholder="검색어를 입력해주세요"
 								name="searchKeyword" value="" class="input input-bordered mx-2">

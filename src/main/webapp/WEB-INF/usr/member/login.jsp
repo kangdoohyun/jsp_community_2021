@@ -42,7 +42,7 @@
 						MemberLogin__submitDone = true;
 					}
 				</script>
-				<form action="../member/doLogin" method="GET"
+				<form action="../member/doLogin" method="POST"
 					onsubmit="MemberLogin__submit(this); return false;">
 					<input type="hidden" name="redirectUri" value="${param.afterLoginUri}"/>
 					<div class="form-control">
