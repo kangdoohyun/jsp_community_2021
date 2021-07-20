@@ -58,7 +58,7 @@
 								<option value="title,body">제목,내용</option>
 							</select>
 							<script>
-								$('.section-article-list select[name="searchKeywordTypeCode"]').val(rqParams.searchKeywordTypeCode);
+								$('.section-article-list select[name="searchKeywordTypeCode"]').val(rqBaseTypeAttrMapJsonStr.searchKeywordTypeCode);
 							</script>
 							<input type="text" placeholder="검색어를 입력해주세요"
 								name="searchKeyword" value="" class="input input-bordered mx-2">

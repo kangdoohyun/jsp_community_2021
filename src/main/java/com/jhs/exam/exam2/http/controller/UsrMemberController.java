@@ -78,7 +78,7 @@ public class UsrMemberController extends Controller {
 			rq.historyBack(joinRd.getMsg());
 		}
 		
-		String redirectUri = "../article/list";
+		String redirectUri = "../member/login";
 		
 		rq.replace(joinRd.getMsg(), redirectUri);
 	}
