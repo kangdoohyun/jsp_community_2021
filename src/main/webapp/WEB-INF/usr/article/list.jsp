@@ -20,7 +20,7 @@
 			<div class="px-4">
 
 				<%-- <c:if test="${rq.logined}"> --%>
-					<a class="btn btn-link" href="./write?boardId=${boardId}">글 쓰기</a>
+				<a class="btn btn-link" href="./write?boardId=${boardId}">글 쓰기</a>
 				<%-- </c:if> --%>
 				<div class="py-4 flex w-full">
 					<div>
