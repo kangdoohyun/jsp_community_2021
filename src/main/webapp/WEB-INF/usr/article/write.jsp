@@ -64,7 +64,8 @@
 					</script>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">제목</span>
+						<label class="label">
+							<span class="label-text">제목</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100" name="title" type="text"
@@ -73,7 +74,8 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">내용</span>
+						<label class="label">
+							<span class="label-text">내용</span>
 						</label>
 						<textarea maxlength="2000" class="textarea textarea-bordered h-60" placeholder="내용을 입력해주세요."
 							name="body"></textarea>

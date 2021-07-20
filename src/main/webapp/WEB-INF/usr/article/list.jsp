@@ -1,6 +1,5 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -25,43 +24,41 @@
 				<div class="py-4 flex w-full">
 					<div>
 						<c:if test="${param.searchKeyword != null && param.searchKeyword != ''}">
-							<div class="badge badge-primary">
-								검색어 타입
-							</div>
+							<div class="badge badge-primary">검색어 타입</div>
 							<span>${param.searchKeywordTypeCode}</span>
-							
+
 							<br />
-						
-							<div class="badge badge-primary">
-								검색어
-							</div>
+
+							<div class="badge badge-primary">검색어</div>
 							<span>${param.searchKeyword}</span>
-							
+
 							<br />
 						</c:if>
 						<div class="badge badge-primary">
 							<span>전체 게시물 수</span>
 						</div>
 						<span>
-							<fmt:formatNumber type="number" maxFractionDigits="3"
-								value="${allArticles.size()}" />
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${allArticles.size()}" />
 						</span>
 					</div>
 					<div class="flex-grow"></div>
 					<div class="search-box">
 						<form class="flex" action="./list" method="GET">
-							<input type="hidden" name="page" value="1" /> <input
-								type="hidden" name="boardId" value="${boardId}" /> 
+							<input type="hidden" name="page" value="1" />
+							<input type="hidden" name="boardId" value="${boardId}" />
 							<select class="select select-bordered" name="searchKeywordTypeCode">
 								<option value="title">제목</option>
 								<option value="body">내용</option>
 								<option value="title,body">제목,내용</option>
 							</select>
 							<script>
-								$('.section-article-list select[name="searchKeywordTypeCode"]').val(rqBaseTypeAttrMapJsonStr.searchKeywordTypeCode);
+								$(
+										'.section-article-list select[name="searchKeywordTypeCode"]')
+										.val(
+												rqBaseTypeAttrMapJsonStr.searchKeywordTypeCode);
 							</script>
-							<input type="text" placeholder="검색어를 입력해주세요"
-								name="searchKeyword" value="" class="input input-bordered mx-2">
+							<input type="text" placeholder="검색어를 입력해주세요" name="searchKeyword" value=""
+								class="input input-bordered mx-2">
 							<input type="submit" class="btn btn-outline" value="검색" />
 						</form>
 					</div>
@@ -72,8 +69,7 @@
 					<div class="py-4">
 						<div class="grid gap-3" style="grid-template-columns: 100px 1fr;">
 							<a href="${detailUri}">
-								<img class="rounded-full w-full"
-									src="https://i.pravatar.cc/200?img=37" alt="">
+								<img class="rounded-full w-full" src="https://i.pravatar.cc/200?img=37" alt="">
 							</a>
 							<a href="${detailUri}" class="hover:underline cursor-pointer">
 								<span class="badge badge-outline">제목</span>
@@ -108,16 +104,14 @@
 							<span class="badge badge-outline">본문</span>
 
 							<div class="mt-2">
-								<img class="rounded" src="https://picsum.photos/id/237/300/300"
-									alt="" />
+								<img class="rounded" src="https://picsum.photos/id/237/300/300" alt="" />
 							</div>
 
 							<div class="line-clamp-3">${article.bodySummaryForPrint}</div>
 						</a>
 						<div class="btns mt-3">
 							<c:if test="${article.extra__actorCanModify}">
-								<a href="../article/modify?id=${article.id}"
-									class="btn btn-link">
+								<a href="../article/modify?id=${article.id}" class="btn btn-link">
 									<span>
 										<i class="fas fa-edit"></i>
 									</span>
@@ -126,8 +120,7 @@
 							</c:if>
 							<c:if test="${article.extra__actorCanDelete}">
 								<a onclick="if ( !confirm('정말로 삭제하시겠습니까?') ) return false;"
-									href="../article/doDelete?id=${article.id}"
-									class="btn btn-link">
+									href="../article/doDelete?id=${article.id}" class="btn btn-link">
 									<span>
 										<i class="fas fa-trash-alt"></i>
 									</span>
@@ -139,17 +132,16 @@
 					<hr />
 				</c:forEach>
 			</div>
-			
+
 			<c:set var="baseUri" value="?boardId=${boardId}" />
 			<c:set var="baseUri" value="${baseUri}&searchKeywordTypeCode=${param.searchKeywordTypeCode}" />
 			<c:set var="baseUri" value="${baseUri}&searchKeyword=${param.searchKeyword}" />
-			
+
 			<!-- 페이지네이션 버전 1 -->
 			<div class="page-menu flex justify-center items-center">
-				
+
 				<c:set var="pageMenuArmSize" value="4" />
-				<c:set var="startPage"
-					value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
+				<c:set var="startPage" value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
 				<c:set var="endPage"
 					value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
 
@@ -168,10 +160,8 @@
 				</c:if>
 
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<c:set var="aClassStr"
-						value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
-					<a class="page-menu__list ${aClassStr}"
-						href="${baseUri}&page=${i}">${ i }</a>
+					<c:set var="aClassStr" value="${i == param.page ? 'text-red-500 font-bold' : ''}" />
+					<a class="page-menu__list ${aClassStr}" href="${baseUri}&page=${i}">${ i }</a>
 				</c:forEach>
 
 				<c:if test="${page >= endPage}">
@@ -191,10 +181,8 @@
 			<!-- 페이지네이션 버전 2 -->
 			<div class="btn-group flex justify-center py-2">
 				<c:set var="pageArm" value="4" />
-				<c:set var="startPage"
-					value="${page - pageArm >= 1 ? page - pageArm : 1 }" />
-				<c:set var="endPage"
-					value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
+				<c:set var="startPage" value="${page - pageArm >= 1 ? page - pageArm : 1 }" />
+				<c:set var="endPage" value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
 				<c:if test="${startPage > 1}">
 					<a class="btn btn-sm" href="${baseUri}&page=1">1</a>
 					<c:if test="${page - pageArm != 2}">

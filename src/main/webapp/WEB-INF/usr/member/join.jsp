@@ -72,7 +72,8 @@
 				<form action="../member/doJoin" method="POST" onsubmit="MemberJoin__submit(this); return false;">
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">로그인아이디</span>
+						<label class="label">
+							<span class="label-text">로그인아이디</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100" name="loginId" type="text"
@@ -81,7 +82,8 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">로그인비밀번호</span>
+						<label class="label">
+							<span class="label-text">로그인비밀번호</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100" name="loginPw" type="password"
@@ -90,7 +92,8 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">이름</span>
+						<label class="label">
+							<span class="label-text">이름</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100" name="name" type="text"
@@ -99,7 +102,8 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">닉네임</span>
+						<label class="label">
+							<span class="label-text">닉네임</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100" name="nickname" type="text"
@@ -108,7 +112,8 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">이메일</span>
+						<label class="label">
+							<span class="label-text">이메일</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100" name="email" type="email"
@@ -117,7 +122,8 @@
 					</div>
 
 					<div class="form-control">
-						<label class="label"> <span class="label-text">전화번호</span>
+						<label class="label">
+							<span class="label-text">전화번호</span>
 						</label>
 						<div>
 							<input class="input input-bordered w-full" maxlength="100" name="cellphoneNo" type="tel"
