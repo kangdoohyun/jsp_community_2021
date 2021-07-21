@@ -87,8 +87,16 @@
 					$(document).ready(function() {
 						$("#join-submit").click(function(){
 							var loginIdChecked = $("#join-submit").val();	
-							if(loginIdChecked == 0){
-								$("#loginIdCheckMsg").html('아이디 중복 확인을 해주세요.');
+							if(loginIdChecked == 0 || loginIdChecked == 2){
+								$("#loginIdCheckMsg").html('아이디 중복을 확인해주세요.');
+								
+								return false;
+							}
+						});
+						$("#join-submit").click(function(){
+							var nicknameChecked = $("#join-submit").val();	
+							if(nicknameChecked == 0 || nicknameChecked == 1){
+								$("#nicknameCheckMsg").html('닉네임 중복을 확인해주세요.');
 								
 								return false;
 							}
@@ -113,9 +121,36 @@
 											$("#join-submit").attr("disabled", true);			
 										}
 										else{
-											console.log(loginId.length)
 											$("#loginIdCheckMsg").html('사용할 수 있는 아이디입니다.');
 											$("#loginIdCheckMsg").css("color", "green");
+											$("#join-submit").attr("disabled", false);
+										}
+									}
+								}
+							});
+						});
+						$('#nicknameCheckbtn').click(function(){
+							var nickname = $('#nickname').val();
+							$("#join-submit").val(2);
+							$.ajax({
+								type: 'POST',
+								url: './nicknameCheck',
+								data: {nickname:nickname},
+								success: function(result){
+									if(result != 'null'){
+										$("#nicknameCheckMsg").html('사용할 수 없는 닉네임입니다.');
+										$("#nicknameCheckMsg").css("color", "red");
+										$("#join-submit").attr("disabled", true);
+									}
+									else{
+										if(nickname.length == 0){
+											$("#nicknameCheckMsg").html('닉네임을 입력해주세요.');
+											$("#nicknameCheckMsg").css("color", "red");
+											$("#join-submit").attr("disabled", true);			
+										}
+										else{
+											$("#nicknameCheckMsg").html('사용할 수 있는 닉네임입니다.');
+											$("#nicknameCheckMsg").css("color", "green");
 											$("#join-submit").attr("disabled", false);
 										}
 									}
@@ -187,10 +222,14 @@
 						<label class="label">
 							<span class="label-text">닉네임</span>
 						</label>
-						<div>
-							<input class="input input-bordered w-full" maxlength="100" name="nickname" type="text"
-								placeholder="닉네임을 입력해주세요." />
+						<div class="flex">
+							<div class="flex-grow">
+								<input class="input input-bordered w-full" maxlength="100" id="nickname" name="nickname" type="text"
+									placeholder="닉네임을 입력해주세요." />
+							</div>
+							<button type="button" id="nicknameCheckbtn" class="btn btn-link ml-2">중복확인</button>
 						</div>
+						<div class="pl-1 pt-2 text-sm" id="nicknameCheckMsg" style="color : red;"></div>
 					</div>
 
 					<div class="form-control">

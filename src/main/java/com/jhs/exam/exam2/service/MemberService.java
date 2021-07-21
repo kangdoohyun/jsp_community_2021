@@ -29,13 +29,22 @@ public class MemberService {
 	public Member getMemberByLoginId(String loginId) {
 		return memberRepository.getMemberByLoginId(loginId);
 	}
+	
+	public Member getMemberByNickname(String nickname) {
+		return memberRepository.getMemberByNickname(nickname);
+	}
 
 	public ResultData join(String loginId, String loginPw, String name, String nickname, String email,
 			String cellphoneNo) {
-		Member member = getMemberByLoginId(loginId);
-		if (member != null) {
+		Member memberByLoginId = getMemberByLoginId(loginId);
+		Member memberByNickname = getMemberByNickname(nickname);
+		if (memberByLoginId != null) {
 			return ResultData.from("F-1", "중복된 아이디 입니다.");
 		}
+		if (memberByNickname != null) {
+			return ResultData.from("F-1", "중복된 닉네임 입니다.");
+		}
+		
 
 		memberRepository.join(loginId, loginPw, name, nickname, email, cellphoneNo);
 		return ResultData.from("S-1", "환영합니다.");

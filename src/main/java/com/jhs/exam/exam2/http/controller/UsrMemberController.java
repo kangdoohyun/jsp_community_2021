@@ -31,6 +31,9 @@ public class UsrMemberController extends Controller {
 		case "loginIdCheck":
 			actionDoLoginIdCheck(rq);
 			break;
+		case "nicknameCheck":
+			actionDoNicknameCheck(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
@@ -40,6 +43,11 @@ public class UsrMemberController extends Controller {
 	private void actionDoLoginIdCheck(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
 		rq.write(memberService.getMemberByLoginId(loginId) + "");
+	}
+	
+	private void actionDoNicknameCheck(Rq rq) {
+		String ncikname = rq.getParam("nickname", "");
+		rq.write(memberService.getMemberByNickname(ncikname) + "");
 	}
 
 	private void actionDoJoin(Rq rq) {
@@ -66,8 +74,8 @@ public class UsrMemberController extends Controller {
 			return;
 		}
 		
-		if (loginPw != loginPwCheck) {
-			rq.historyBack("비밀번호가 서로 일치하지 않습니다.");
+		if (!loginPw.trim().equals(loginPwCheck.trim())) {
+			rq.historyBack("비밀번호가 서로 일치하지 않습니다." + loginPw + " " + loginPwCheck);
 			return;
 		}
 		

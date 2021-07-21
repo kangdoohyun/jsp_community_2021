@@ -35,5 +35,14 @@ public class MemberRepository {
 		sql.append(", cellphoneNo = ?", cellphoneNo);
 		MysqlUtil.insert(sql);
 	}
+
+	public Member getMemberByNickname(String nickname) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT M.*");
+		sql.append("FROM member AS M");
+		sql.append("WHERE M.nickname = ?", nickname);
+		
+		return MysqlUtil.selectRow(sql, Member.class);
+	}
 	
 }
