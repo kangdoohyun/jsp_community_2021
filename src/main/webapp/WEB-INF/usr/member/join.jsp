@@ -74,11 +74,12 @@
 						$("#join-submit").click(function(){
 							var loginIdChecked = $("#join-submit").val();	
 							if(loginIdChecked == 0){
-								alert("아이디 중복 확인을 해주세요.");
+								$("#loginIdCheckMsg").html('아이디 중복 확인을 해주세요.');
+								
 								return false;
 							}
 						});
-						$('#checkbtn').click(function(){
+						$('#loginIdCheckbtn').click(function(){
 							var loginId = $('#loginId').val();
 							$("#join-submit").val(1);
 							$.ajax({
@@ -87,20 +88,20 @@
 								data: {loginId:loginId},
 								success: function(result){
 									if(result != 'null'){
-										$("#checkMsg").html('사용할 수 없는 아이디입니다.');
-										$("#checkMsg").css("color", "red");
+										$("#loginIdCheckMsg").html('사용할 수 없는 아이디입니다.');
+										$("#loginIdCheckMsg").css("color", "red");
 										$("#join-submit").attr("disabled", true);
 									}
 									else{
 										if(loginId.length == 0){
-											$("#checkMsg").html('아이디를 입력해주세요.');
-											$("#checkMsg").css("color", "red");
+											$("#loginIdCheckMsg").html('아이디를 입력해주세요.');
+											$("#loginIdCheckMsg").css("color", "red");
 											$("#join-submit").attr("disabled", true);			
 										}
 										else{
 											console.log(loginId.length)
-											$("#checkMsg").html('사용할 수 있는 아이디입니다.');
-											$("#checkMsg").css("color", "green");
+											$("#loginIdCheckMsg").html('사용할 수 있는 아이디입니다.');
+											$("#loginIdCheckMsg").css("color", "green");
 											$("#join-submit").attr("disabled", false);
 										}
 									}
@@ -120,9 +121,9 @@
 								<input class="input input-bordered w-full" maxlength="100" id="loginId" name="loginId" type="text"
 									placeholder="로그인아이디를 입력해주세요." />
 							</div>
-							<button type="button" id="checkbtn" class="btn btn-link ml-2">중복확인</button>
+							<button type="button" id="loginIdCheckbtn" class="btn btn-link ml-2">중복확인</button>
 						</div>
-						<div id="checkMsg"></div>
+						<div class="pl-1 pt-2 text-sm" id="loginIdCheckMsg" style="color : red;"></div>
 						
 					</div>
 
