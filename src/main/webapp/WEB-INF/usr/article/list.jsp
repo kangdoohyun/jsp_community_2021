@@ -138,7 +138,7 @@
 			<c:set var="baseUri" value="${baseUri}&searchKeyword=${param.searchKeyword}" />
 
 			<!-- 페이지네이션 버전 1 -->
-			<div class="page-menu flex justify-center items-center">
+			<div class="page-menu flex justify-center items-center px-8">
 
 				<c:set var="pageMenuArmSize" value="4" />
 				<c:set var="startPage" value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
