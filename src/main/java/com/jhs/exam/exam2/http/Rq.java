@@ -90,6 +90,14 @@ public class Rq {
 			e.printStackTrace();
 		}
 	}
+	
+	public void write(String str) {
+		try {
+			resp.getWriter().write(str);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void println(String str) {
 		print(str + "\n");

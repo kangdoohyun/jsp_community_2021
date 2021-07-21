@@ -35,5 +35,5 @@ public class MemberRepository {
 		sql.append(", cellphoneNo = ?", cellphoneNo);
 		MysqlUtil.insert(sql);
 	}
-
+	
 }
