@@ -45,6 +45,7 @@ public class UsrMemberController extends Controller {
 	private void actionDoJoin(Rq rq) {
 		String loginId = rq.getParam("loginId", "");
 		String loginPw = rq.getParam("loginPw", "");
+		String loginPwCheck = rq.getParam("loginPwCheck", "");
 		String name = rq.getParam("name", "");
 		String nickname = rq.getParam("nickname", "");
 		String email = rq.getParam("email", "");
@@ -57,6 +58,16 @@ public class UsrMemberController extends Controller {
 
 		if (loginPw.length() == 0) {
 			rq.historyBack("loginPw를 입력해주세요.");
+			return;
+		}
+		
+		if (loginPwCheck.length() == 0) {
+			rq.historyBack("loginPwCheck를 입력해주세요.");
+			return;
+		}
+		
+		if (loginPw != loginPwCheck) {
+			rq.historyBack("비밀번호가 서로 일치하지 않습니다.");
 			return;
 		}
 		
