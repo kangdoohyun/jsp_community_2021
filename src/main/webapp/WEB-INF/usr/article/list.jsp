@@ -138,9 +138,9 @@
 			<c:set var="baseUri" value="${baseUri}&searchKeyword=${param.searchKeyword}" />
 
 			<!-- 페이지네이션 버전 1 -->
-			<div class="page-menu flex justify-center items-center px-8">
+			<div class="page-menu flex justify-center items-center px-8 hidden">
 
-				<c:set var="pageMenuArmSize" value="4" />
+				<c:set var="pageMenuArmSize" value="2" />
 				<c:set var="startPage" value="${page - pageMenuArmSize >= 1  ? page - pageMenuArmSize : 1}" />
 				<c:set var="endPage"
 					value="${page + pageMenuArmSize <= totalPage ? page + pageMenuArmSize : totalPage}" />
@@ -179,26 +179,52 @@
 				</a>
 			</div>
 			<!-- 페이지네이션 버전 2 -->
-			<div class="btn-group flex justify-center py-2">
-				<c:set var="pageArm" value="4" />
-				<c:set var="startPage" value="${page - pageArm >= 1 ? page - pageArm : 1 }" />
-				<c:set var="endPage" value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
-				<c:if test="${startPage > 1}">
-					<a class="btn btn-sm" href="${baseUri}&page=1">1</a>
-					<c:if test="${page - pageArm != 2}">
-						<button class="btn btn-sm btn-disabled">...</button>
+			<div class="page-menu hidden md:flex justify-center py-2">
+				<div class="btn-group">
+					<c:set var="pageArm" value="2" />
+					<c:set var="startPage" value="${page - pageArm >= 1 ? page - pageArm : 1 }" />
+					<c:set var="endPage" value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
+					<c:if test="${startPage > 1}">
+						<a class="btn btn-sm" href="${baseUri}&page=1">1</a>
+						<c:if test="${page - pageArm != 2}">
+							<button class="btn btn-sm btn-disabled">...</button>
+						</c:if>
 					</c:if>
-				</c:if>
-				<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-					<c:set var="activeBtn" value="${page == i ? 'btn-active' : ''}" />
-					<a class="btn btn-sm ${activeBtn}" href="${baseUri}&page=${i}">${i}</a>
-				</c:forEach>
-				<c:if test="${totalPage > endPage}">
-					<c:if test="${page + pageArm != totalPage - 1}">
-						<button class="btn btn-sm btn-disabled">...</button>
+					<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+						<c:set var="activeBtn" value="${page == i ? 'btn-active' : ''}" />
+						<a class="btn btn-sm ${activeBtn}" href="${baseUri}&page=${i}">${i}</a>
+					</c:forEach>
+					<c:if test="${totalPage > endPage}">
+						<c:if test="${page + pageArm != totalPage - 1}">
+							<button class="btn btn-sm btn-disabled">...</button>
+						</c:if>
+						<a class="btn btn-sm" href="${baseUri}&page=${totalPage}">${totalPage}</a>
 					</c:if>
-					<a class="btn btn-sm" href="${baseUri}&page=${totalPage}">${totalPage}</a>
-				</c:if>
+				</div>
+			</div>
+			<!-- 페이지네이션 버전 2 모바일 -->
+			<div class="page-menu flex md:hidden justify-center py-2">
+				<div class="btn-group">
+					<c:set var="pageArm" value="2" />
+					<c:set var="startPage" value="${page - pageArm >= 1 ? page - pageArm : 1 }" />
+					<c:set var="endPage" value="${page + pageArm <= totalPage ? page + pageArm : totalPage }" />
+					<c:if test="${startPage > 1}">
+						<a class="btn btn-xs" href="${baseUri}&page=1">1</a>
+						<c:if test="${page - pageArm != 2}">
+							<button class="btn btn-xs btn-disabled">...</button>
+						</c:if>
+					</c:if>
+					<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+						<c:set var="activeBtn" value="${page == i ? 'btn-active' : ''}" />
+						<a class="btn btn-xs ${activeBtn}" href="${baseUri}&page=${i}">${i}</a>
+					</c:forEach>
+					<c:if test="${totalPage > endPage}">
+						<c:if test="${page + pageArm != totalPage - 1}">
+							<button class="btn btn-xs btn-disabled">...</button>
+						</c:if>
+						<a class="btn btn-xs" href="${baseUri}&page=${totalPage}">${totalPage}</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>
