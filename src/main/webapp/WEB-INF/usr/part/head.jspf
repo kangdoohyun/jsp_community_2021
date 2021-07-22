@@ -317,7 +317,7 @@ const rqParams = ${rq.paramMapJsonStr};
 						<li>
 							<a class="h-full flex items-center px-6">
 								<span>
-									<input type="text" class="input input-sm input-bordered w-24 lg:w-32" placeholder="Search.." />
+									<input readonly="readonly" type="text" class="input input-sm input-bordered w-24 lg:w-32" placeholder="Search.." />
 								</span>
 								<span>&nbsp;</span>
 								<span class="cursor-pointer w-8 h-8 flex items-center justify-center btn-show-search-bar">
