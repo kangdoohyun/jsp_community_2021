@@ -17,10 +17,7 @@
 				<span>게시물 리스트</span>
 			</div>
 			<div class="px-4">
-
-				<%-- <c:if test="${rq.logined}"> --%>
 				<a class="btn btn-link" href="./write?boardId=${boardId}">글 쓰기</a>
-				<%-- </c:if> --%>
 				<div class="py-4 flex w-full">
 					<div>
 						<c:if test="${param.searchKeyword != null && param.searchKeyword != ''}">
@@ -41,27 +38,7 @@
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${allArticles.size()}" />
 						</span>
 					</div>
-					<div class="flex-grow"></div>
-					<div class="search-box">
-						<form class="flex" action="./list" method="GET">
-							<input type="hidden" name="page" value="1" />
-							<input type="hidden" name="boardId" value="${boardId}" />
-							<select class="select select-bordered" name="searchKeywordTypeCode">
-								<option value="title">제목</option>
-								<option value="body">내용</option>
-								<option value="title,body">제목,내용</option>
-							</select>
-							<script>
-								$(
-										'.section-article-list select[name="searchKeywordTypeCode"]')
-										.val(
-												rqBaseTypeAttrMapJsonStr.searchKeywordTypeCode);
-							</script>
-							<input type="text" placeholder="검색어를 입력해주세요" name="searchKeyword" value=""
-								class="input input-bordered mx-2">
-							<input type="submit" class="btn btn-outline" value="검색" />
-						</form>
-					</div>
+					
 				</div>
 				<c:forEach items="${articles}" var="article">
 					<c:set var="detailUri" value="../article/detail?id=${article.id}" />

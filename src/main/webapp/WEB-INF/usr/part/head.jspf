@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${pageTitle} | JSP BOARD</title>
+<title>${pageTitle}${' | '}JSPBOARD</title>
 
 <!-- 모바일에서 디자인이 축소되지 않게 하기 위한 코드 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,6 +38,61 @@ const rqBaseTypeAttrMapJsonStr = ${rq.baseTypeAttrMapJsonStr};
 const rqParams = ${rq.paramMapJsonStr};
 <%="</script>"%>
 <body>
+	<c:if test="${boardId == null}">
+		<c:set var="boardId" value="0" />
+	</c:if>
+	<div class="search-bar">
+		<form action="../article/list">
+			<div>
+				<div class="badge badge-primary">게시물 검색</div>
+			</div>
+			<div class="form-control">
+				<label class="label">
+					<span class="label-text">게시판</span>
+				</label>
+				<div>
+					<select name="boardId" class="select select-bordered w-full">
+						<option value="0">전체게시판</option>
+						<option value="1">공지사항</option>
+						<option value="2">자유게시판</option>
+					</select>
+					<script>
+						$('.search-bar select[name="boardId"]').val(rqBaseTypeAttrMapJsonStr.boardId);
+					</script>
+				</div>
+			</div>
+
+			<div class="form-control">
+				<label class="label">
+					<span class="label-text">검색타입</span>
+				</label>
+				<div>
+					<select name="searchKeywordTypeCode" class="select select-bordered w-full">
+						<option value="title,body">제목,내용</option>
+						<option value="title">제목</option>
+						<option value="body">내용</option>
+					</select>
+					<script>
+						$('.search-bar select[name="searchKeywordTypeCode"]').val(rqBaseTypeAttrMapJsonStr.searchKeywordTypeCode);
+					</script>
+				</div>
+			</div>
+
+			<div class="form-control">
+				<label class="label">
+					<span class="label-text">검색어</span>
+				</label>
+				<div>
+					<input autocomplete="off" class="input input-bordered w-full" maxlength="100" name="searchKeyword" type="text" placeholder="검색어를 입력해주세요." />
+				</div>
+			</div>
+
+			<div class="btns">
+				<button type="submit" class="btn btn-link">검색</button>
+				<button type="button" class="btn btn-link btn-hide-search-bar">검색취소</button>
+			</div>
+		</form>
+	</div>
 	<div class="site-wrap flex flex-col min-h-screen">
 		<div class="h-10 flex-shrink-0s mb-4"></div>
 		<header class="mobile-top-bar fixed z-40 inset-0 h-10 font-bold bg-white shadow md:hidden">
@@ -97,7 +152,22 @@ const rqParams = ${rq.paramMapJsonStr};
 								<span>&nbsp;HOME</span>
 							</a>
 						</li>
-						
+						<li>
+							<a href="../article/write" class="flex py-2 hover:underline hover:text-red-500">
+								<span>
+									<i class="fas fa-pen"></i>
+								</span>
+								<span>&nbsp;WRITE</span>
+							</a>
+						</li>
+						<li>
+							<a class="flex py-2 hover:underline hover:text-red-500 btn-show-search-bar">
+								<span>
+									<i class="fas fa-search"></i>
+								</span>
+								<span>&nbsp;SEARCH</span>
+							</a>
+						</li>
 						<li>
 							<a href="../article/list?boardId=1" class="flex py-2 hover:underline hover:text-red-500">
 								<span>
@@ -237,12 +307,20 @@ const rqParams = ${rq.paramMapJsonStr};
 							</li>
 						</c:if>
 						<li>
+							<a href="../article/write?boardId=${boardId}" class="h-full flex items-center px-6 hover:underline hover:text-red-500">
+								<span>
+									<i class="fas fa-pen"></i>
+								</span>
+								<span class="hidden lg:block">&nbsp;WRITE</span>
+							</a>
+						</li>
+						<li>
 							<a class="h-full flex items-center px-6">
 								<span>
 									<input type="text" class="input input-sm input-bordered w-24 lg:w-32" placeholder="Search.." />
 								</span>
 								<span>&nbsp;</span>
-								<span class="cursor-pointer w-8 h-8 flex items-center justify-center">
+								<span class="cursor-pointer w-8 h-8 flex items-center justify-center btn-show-search-bar">
 									<i class="fas fa-search"></i>
 								</span>
 							</a>

@@ -1,5 +1,29 @@
 @charset "UTF-8";
+/* 라이브러리 시작 */
+.line-clamp-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
 
+.row-span-7 {
+  grid-row: span 7/span 7;
+}
+
+.row-span-8 {
+  grid-row: span 8/span 8;
+}
+
+@media ( max-width: 640px ) {
+  .sm\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+}
+/* 라이브러리 끝 */
+
+/* 커스텀 시작 */
 :root {
   --card-title_height:40px;
   --card-title_left-btn-cell-width:50px;
@@ -8,6 +32,44 @@
 body {
   color:#666;
 }
+
+.page-menu > .page-menu__list {
+	padding: 15px 5px; 
+}
+.page-menu > .prev {
+	display: block;
+	padding: 15px;
+}
+.page-menu > .next {
+	display: block;
+	padding: 15px;
+}
+.page-menu > .first {
+	display: block;
+	padding: 15px 5px;
+}
+.page-menu > .end {
+	display: block;
+	padding: 15px 5px;
+}
+
+.btns {
+  margin-top:10px;	
+}
+
+@media (max-width: 480px) {
+  .card-wrap {
+    max-width:none;
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .card-wrap > .card {
+    overflow: visible;
+    border-radius:0;
+  }
+}
+/* 커스텀 끝 */
 
 /* 데이지 UI 커스텀 시작*/
 .badge-primary {
@@ -24,7 +86,6 @@ body {
     --tw-text-opacity: 1;
     color: rgb(255,127,80);
 }
-/* 데이지 UI 커스텀 끝*/
 .card-title {
   background-color:rgb(255,127,80);
   color:white;
@@ -50,64 +111,7 @@ body {
 	--tw-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.1),0 -1px 2px 0 rgba(0, 0, 0, 0.06);
     box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);;
 }
-
-.line-clamp-3 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
-.row-span-7 {
-  grid-row: span 7/span 7;
-}
-
-.row-span-8 {
-  grid-row: span 8/span 8;
-}
-
-@media ( max-width: 640px ) {
-  .sm\:col-span-3 {
-    grid-column: span 3 / span 3;
-  }
-}
-.page-menu > .page-menu__list {
-	padding: 15px 5px; 
-}
-.page-menu > .prev {
-	display: block;
-	padding: 15px;
-}
-.page-menu > .next {
-	display: block;
-	padding: 15px;
-}
-.page-menu > .first {
-	display: block;
-	padding: 15px 5px;
-}
-.page-menu > .end {
-	display: block;
-	padding: 15px 5px;
-}
-
-@media (max-width: 480px) {
-  .card-wrap {
-    max-width:none;
-    padding-left:0;
-    padding-right:0;
-  }
-
-  .card-wrap > .card {
-    overflow: visible;
-    border-radius:0;
-  }
-}
-
-.btns {
-  margin-top:10px;	
-}
+/* 데이지 UI 커스텀 끝*/
 
 /* 모바일 사이드바 시작 */
 .mobile-side-bar {
@@ -131,3 +135,39 @@ body {
 }
 
 /* 모바일 사이드바 끝 */ 
+
+/* 검색바 시작 */
+.search-bar-actived,
+.search-bar-actived > body {
+  overflow:hidden;
+}
+
+.search-bar {
+  visibility:hidden;
+  opacity:0;
+  background-color:rgba(0,0,0,0.7);
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+}
+
+.search-bar.active {
+  visibility:visible;
+  opacity:1;
+}
+
+.search-bar > form {
+  min-width:320px;
+  background-color:white;
+  padding:20px;
+  border-radius:10px;
+  border:2px solid black;
+}
+
+/* 검색바 끝 */ 
