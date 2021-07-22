@@ -42,16 +42,39 @@ public class MemberService {
 			String cellphoneNo) {
 		Member memberByLoginId = getMemberByLoginId(loginId);
 		Member memberByNickname = getMemberByNickname(nickname);
+		Member memberByEmail = getMemberByEmail(email);
 		if (memberByLoginId != null) {
 			return ResultData.from("F-1", "중복된 아이디 입니다.");
 		}
 		if (memberByNickname != null) {
 			return ResultData.from("F-1", "중복된 닉네임 입니다.");
 		}
-		
+		if (memberByEmail != null) {
+			return ResultData.from("F-1", "중복된 이메일 입니다.");
+		}
 
 		memberRepository.join(loginId, loginPw, name, nickname, email, cellphoneNo);
 		return ResultData.from("S-1", "환영합니다.");
+	}
+
+	public ResultData modify(String loginId, String loginPw, String name, String nickname, String email,
+			String cellphoneNo) {
+		Member memberByLoginId = getMemberByLoginId(loginId);
+		Member memberByNickname = getMemberByNickname(nickname);
+		if (memberByLoginId != null) {
+			if(!memberByLoginId.getLoginId().trim().equals(loginId.trim())) {
+				return ResultData.from("F-1", "중복된 아이디 입니다.");
+			}
+		}
+		if (memberByNickname != null) {
+			if(!memberByLoginId.getNickname().trim().equals(nickname.trim())) {
+				return ResultData.from("F-1", "중복된 닉네임 입니다.");
+			}
+		}
+		
+
+		memberRepository.modify(loginId, loginPw, name, nickname, email, cellphoneNo);
+		return ResultData.from("S-1", "회원정보 수정이 완료되었습니다..");
 	}
 
 }

@@ -53,5 +53,18 @@ public class MemberRepository {
 		
 		return MysqlUtil.selectRow(sql, Member.class);
 	}
+
+	public int modify(String loginId, String loginPw, String name, String nickname, String email, String cellphoneNo) {
+		SecSql sql = new SecSql();
+		sql.append("UPDATE `member` SET");
+		sql.append("loginPw = ?", loginPw);
+		sql.append(", name = ?", name);
+		sql.append(", nickname = ?", nickname);
+		sql.append(", email = ?", email);
+		sql.append(", cellphoneNo = ?", cellphoneNo);
+		sql.append("WHERE loginid = ?", loginId);
+		
+		return MysqlUtil.update(sql);
+	}
 	
 }

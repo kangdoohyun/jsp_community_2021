@@ -131,7 +131,7 @@ const rqParams = ${rq.paramMapJsonStr};
 								</a>
 							</li>
 							<li>
-								<a href="#" class="flex py-2 hover:underline hover:text-red-500">
+								<a href="../member/myPage" class="flex py-2 hover:underline hover:text-red-500">
 									<span>
 										<i class="fas fa-user"></i>
 									</span>
@@ -217,7 +217,7 @@ const rqParams = ${rq.paramMapJsonStr};
 								</a>
 							</li>
 							<li>
-								<a href="#" class="h-full flex items-center px-6 hover:underline hover:text-red-500">
+								<a href="../member/myPage" class="h-full flex items-center px-6 hover:underline hover:text-red-500">
 									<span>
 										<i class="fas fa-user"></i>
 									</span>
