@@ -86,24 +86,32 @@
 				<script>
 					$(document).ready(function() {
 						$("#join-submit").click(function(){
-							var loginIdChecked = $("#join-submit").val();	
-							if(loginIdChecked == 0 || loginIdChecked == 2){
+							var checked = $("#join-submit").val();	
+							if(!checked.contains('loginId')){
 								$("#loginIdCheckMsg").html('아이디 중복을 확인해주세요.');
 								
 								return false;
 							}
 						});
 						$("#join-submit").click(function(){
-							var nicknameChecked = $("#join-submit").val();	
-							if(nicknameChecked == 0 || nicknameChecked == 1){
+							var checked = $("#join-submit").val();	
+							if(!checked.contains('nickname')){
 								$("#nicknameCheckMsg").html('닉네임 중복을 확인해주세요.');
 								
 								return false;
 							}
 						});
-						$('#loginIdCheckbtn').click(function(){
+						$("#join-submit").click(function(){
+							var checked = $("#join-submit").val();
+							if(!checked.contains('email')){
+								$("#emailCheckMsg").html('이메일 중복을 확인해주세요.');
+								
+								return false;
+							}
+						});
+						$('#loginId').blur(function(){
 							var loginId = $('#loginId').val();
-							$("#join-submit").val(1);
+							$("#join-submit").val() + 'loginId';
 							$.ajax({
 								type: 'POST',
 								url: './loginIdCheck',
@@ -129,26 +137,29 @@
 								}
 							});
 						});
-						$('#nicknameCheckbtn').click(function(){
+						$('#nickname').blur(function(){
 							var nickname = $('#nickname').val();
-							$("#join-submit").val(2);
+							$("#join-submit").val() + 'nickname';
 							$.ajax({
 								type: 'POST',
 								url: './nicknameCheck',
 								data: {nickname:nickname},
 								success: function(result){
 									if(result != 'null'){
+										console.log(result);
 										$("#nicknameCheckMsg").html('사용할 수 없는 닉네임입니다.');
 										$("#nicknameCheckMsg").css("color", "red");
 										$("#join-submit").attr("disabled", true);
 									}
 									else{
 										if(nickname.length == 0){
+											console.log(result);
 											$("#nicknameCheckMsg").html('닉네임을 입력해주세요.');
 											$("#nicknameCheckMsg").css("color", "red");
 											$("#join-submit").attr("disabled", true);			
 										}
 										else{
+											console.log(result);
 											$("#nicknameCheckMsg").html('사용할 수 있는 닉네임입니다.');
 											$("#nicknameCheckMsg").css("color", "green");
 											$("#join-submit").attr("disabled", false);
@@ -157,7 +168,45 @@
 								}
 							});
 						});
+						$('#email').blur(function(){
+							var email = $('#email').val();
+							$("#join-submit").val() + 'email';
+							$.ajax({
+								type: 'POST',
+								url: './emailCheck',
+								data: {email:email},
+								success: function(result){
+									if(result.startsWith('false')){
+										console.log(result);
+										$("#emailCheckMsg").html('이메일 형식에 맞게 입력해주세요.');
+										$("#emailCheckMsg").css("color", "red");
+										$("#join-submit").attr("disabled", true);
+									}
+									else if(result != 'null'){
+										console.log(result);
+										$("#emailCheckMsg").html('사용할 수 없는 이메일입니다.');
+										$("#emailCheckMsg").css("color", "red");
+										$("#join-submit").attr("disabled", true);
+									}
+									else{
+										if(email.length == 0){
+											console.log(result);
+											$("#emailCheckMsg").html('이메일을 입력해주세요.');
+											$("#emailCheckMsg").css("color", "red");
+											$("#join-submit").attr("disabled", true);			
+										}
+										else{
+											console.log(result);
+											$("#emailCheckMsg").html('사용할 수 있는 이메일입니다.');
+											$("#emailCheckMsg").css("color", "green");
+											$("#join-submit").attr("disabled", false);
+										}
+									}
+								}
+							});
+						});
 					});
+					
 					function passwordCheckFunction(){
 						var loginPw = $("#loginPw").val();
 						var loginPwCheck = $("#loginPwCheck").val();
@@ -177,14 +226,10 @@
 							<span class="label-text">아이디</span>
 						</label>
 						<div class="flex">
-							<div class="flex-grow">
-								<input class="input input-bordered w-full" maxlength="100" id="loginId" name="loginId" type="text"
-									placeholder="아이디를 입력해주세요." />
-							</div>
-							<button type="button" id="loginIdCheckbtn" class="btn btn-link ml-2">중복확인</button>
+							<input class="input input-bordered w-full" maxlength="100" id="loginId" name="loginId" type="text"
+								placeholder="아이디를 입력해주세요." />
 						</div>
 						<div class="pl-1 pt-2 text-sm" id="loginIdCheckMsg" style="color : red;"></div>
-						
 					</div>
 
 					<div class="form-control">
@@ -223,11 +268,8 @@
 							<span class="label-text">닉네임</span>
 						</label>
 						<div class="flex">
-							<div class="flex-grow">
-								<input class="input input-bordered w-full" maxlength="100" id="nickname" name="nickname" type="text"
-									placeholder="닉네임을 입력해주세요." />
-							</div>
-							<button type="button" id="nicknameCheckbtn" class="btn btn-link ml-2">중복확인</button>
+							<input class="input input-bordered w-full" maxlength="100" id="nickname" name="nickname" type="text"
+								placeholder="닉네임을 입력해주세요." />
 						</div>
 						<div class="pl-1 pt-2 text-sm" id="nicknameCheckMsg" style="color : red;"></div>
 					</div>
@@ -236,10 +278,11 @@
 						<label class="label">
 							<span class="label-text">이메일</span>
 						</label>
-						<div>
-							<input class="input input-bordered w-full" maxlength="100" name="email" type="email"
-								placeholder="이메일을 입력해주세요." />
+						<div class="flex">
+							<input class="input input-bordered w-full" maxlength="100" id="email" name="email" type="email"
+							placeholder="이메일을 입력해주세요." />
 						</div>
+						<div class="pl-1 pt-2 text-sm" id="emailCheckMsg" style="color : red;"></div>
 					</div>
 
 					<div class="form-control">

@@ -160,7 +160,7 @@ const rqParams = ${rq.paramMapJsonStr};
 				<nav class="top-bar__menu-box-1">
 					<ul class="flex h-full -mr-2">
 						<li>
-							<a href="../article/list"
+							<a href="../../"
 								class="h-full flex items-center px-6 hover:underline hover:text-red-500">
 								<span>
 									<i class="fas fa-home"></i>

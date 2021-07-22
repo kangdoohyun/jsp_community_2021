@@ -33,6 +33,10 @@ public class MemberService {
 	public Member getMemberByNickname(String nickname) {
 		return memberRepository.getMemberByNickname(nickname);
 	}
+	
+	public Member getMemberByEmail(String email) {
+		return memberRepository.getMemberByEmail(email);
+	}
 
 	public ResultData join(String loginId, String loginPw, String name, String nickname, String email,
 			String cellphoneNo) {

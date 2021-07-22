@@ -34,10 +34,21 @@ public class UsrMemberController extends Controller {
 		case "nicknameCheck":
 			actionDoNicknameCheck(rq);
 			break;
+		case "emailCheck":
+			actionDoEmailCheck(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
 		}
+	}
+
+	private void actionDoEmailCheck(Rq rq) {
+		String email = rq.getParam("email", "");
+		if(!Ut.isValidEmail(email)) {
+			rq.print("false");
+		}
+		rq.print(memberService.getMemberByEmail(email) + "");
 	}
 
 	private void actionDoLoginIdCheck(Rq rq) {

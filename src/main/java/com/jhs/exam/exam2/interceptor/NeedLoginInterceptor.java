@@ -21,6 +21,7 @@ public class NeedLoginInterceptor extends Interceptor {
 		case "/usr/member/doFindLoginPw":
 		case "/usr/member/loginIdCheck":
 		case "/usr/member/nicknameCheck":
+		case "/usr/member/emailCheck":
 			return true;
 		}
 		

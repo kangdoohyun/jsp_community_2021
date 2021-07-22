@@ -44,5 +44,14 @@ public class MemberRepository {
 		
 		return MysqlUtil.selectRow(sql, Member.class);
 	}
+
+	public Member getMemberByEmail(String email) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT M.*");
+		sql.append("FROM member AS M");
+		sql.append("WHERE M.email= ?", email);
+		
+		return MysqlUtil.selectRow(sql, Member.class);
+	}
 	
 }
