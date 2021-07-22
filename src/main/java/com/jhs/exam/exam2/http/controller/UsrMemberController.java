@@ -149,6 +149,7 @@ public class UsrMemberController extends Controller {
 
 		if (loginRd.isFail()) {
 			rq.historyBack(loginRd.getMsg());
+			return;
 		}
 
 		Member member = (Member) loginRd.getBody().get("member");

@@ -12,7 +12,7 @@
 				<a href="javascript:history.back();" class="cursor-pointer">
 					<i class="fas fa-chevron-left"></i>
 				</a>
-				<span>로그인</span>
+				<span>회원 가입</span>
 			</div>
 
 			<div class="px-4 py-4">
@@ -22,7 +22,8 @@
 						if (MemberJoin__submitDone) {
 							return;
 						}
-
+						
+						form.loginId.value = form.loginId.value.trim();
 						if (form.loginId.value.length == 0) {
 							alert('아이디를 입력해주세요.');
 							form.loginId.focus();
@@ -30,6 +31,7 @@
 							return;
 						}
 
+						form.loginPw.value = form.loginPw.value.trim();
 						if (form.loginPw.value.length == 0) {
 							alert('비밀번호를 입력해주세요.');
 							form.loginPw.focus();
@@ -37,6 +39,7 @@
 							return;
 						}
 						
+						form.loginPwCheck.value = form.loginPwCheck.value.trim();
 						if (form.loginPwCheck.value.length == 0) {
 							alert('비밀번호를 확인해 주세요.');
 							form.loginPwCheck.focus();
@@ -51,6 +54,7 @@
 							return;
 						}
 
+						form.name.value = form.name.value.trim();
 						if (form.name.value.length == 0) {
 							alert('이름을 입력해주세요.');
 							form.name.focus();
@@ -58,6 +62,7 @@
 							return;
 						}
 
+						form.nickname.value = form.nickname.value.trim();
 						if (form.nickname.value.length == 0) {
 							alert('닉네임을 입력해주세요.');
 							form.nickname.focus();
@@ -65,6 +70,7 @@
 							return;
 						}
 
+						form.email.value = form.email.value.tim();
 						if (form.email.value.length == 0) {
 							alert('이메일을 입력해주세요.');
 							form.email.focus();
@@ -72,6 +78,7 @@
 							return;
 						}
 
+						form.cellphoneNo.value = form.cellphoneNo.value.trim();
 						if (form.cellphoneNo.value.length == 0) {
 							alert('전화번호를 입력해주세요.');
 							form.cellphoneNo.focus();
@@ -220,7 +227,18 @@
 					}
 				</script>
 				<form action="../member/doJoin" method="POST" onsubmit="MemberJoin__submit(this); return false;">
-
+					<div class="form-control">
+						<label class="flex text-sm py-2">
+							<input class="checkbox checkbox-sm" type="checkbox" />
+							<span class="pl-1">이용 약관 동의</span>
+						</label>
+					</div>
+					<div class="form-control">
+						<label class="flex text-sm py-2">
+							<input class="checkbox checkbox-sm" type="checkbox" />
+							<span class="pl-1">개인정보 수집 약관 동의</span>
+						</label>
+					</div>
 					<div class="form-control">
 						<label class="label">
 							<span class="label-text">아이디</span>
