@@ -4,8 +4,8 @@
 <c:set var="pageTitle" value="로그인" />
 <%@ include file="../part/head.jspf"%>
 
-<section class="section section-member-join px-4">
-	<div class="container mx-auto">
+<section class="section section-member-join">
+	<div class="container mx-auto card-wrap">
 
 		<div class="card bordered shadow-lg">
 			<div class="card-title">

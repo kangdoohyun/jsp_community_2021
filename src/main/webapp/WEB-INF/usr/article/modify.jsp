@@ -4,8 +4,8 @@
 <c:set var="pageTitle" value="게시물 수정" />
 <%@ include file="../part/head.jspf"%>
 
-<section class="section section-article-write px-4">
-	<div class="container mx-auto">
+<section class="section section-article-write">
+	<div class="container mx-auto card-wrap">
 
 		<div class="card bordered shadow-lg">
 			<div class="card-title">

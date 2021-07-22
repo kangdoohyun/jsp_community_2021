@@ -4,8 +4,8 @@
 <c:set var="pageTitle" value="마이페이지" />
 <%@ include file="../part/head.jspf"%>
 
-<section class="section section-member-myPage px-4">
-	<div class="container mx-auto">
+<section class="section section-member-myPage">
+	<div class="container mx-auto card-wrap">
 
 		<div class="card bordered shadow-lg">
 			<div class="card-title">

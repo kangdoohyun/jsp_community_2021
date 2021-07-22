@@ -4,20 +4,22 @@
 <c:set var="pageTitle" value="메인 페이지" />
 <%@ include file="../part/head.jspf"%>
 
-<section class="section section-home-main px-4">
-	<div class="container mx-auto">
+<section class="section section-home-main">
+	<div class="container mx-auto card-wrap">
 
 		<div class="card bordered shadow-lg">
 			<div class="card-title">
-				<a href="javascript:history.back();" class="cursor-pointer">
-					<i class="fas fa-chevron-left"></i>
-				</a>
+				<span>
+					<i class="fas fa-home"></i>
+				</span>
 				<span>메인 페이지</span>
 			</div>
 
-			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo voluptatibus
+			<div class="p-4">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo voluptatibus
 				facilis maxime illum iste ducimus officiis asperiores debitis fuga sed consequatur praesentium
-				ab quia nulla sequi tempore soluta architecto ratione.</div>
+				ab quia nulla sequi tempore soluta architecto ratione.
+			</div>
 		</div>
 	</div>
 
