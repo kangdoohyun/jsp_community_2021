@@ -98,8 +98,8 @@ const rqParams = ${rq.paramMapJsonStr};
 		</form>
 	</div>
 	<div class="site-wrap flex flex-col min-h-screen">
-		<div class="h-10 flex-shrink-0s mb-4"></div>
-		<header class="mobile-top-bar fixed z-40 inset-0 h-10 font-bold bg-white shadow md:hidden">
+		<div class="h-14 md:h-16 flex-shrink-0"></div>
+		<header class="mobile-top-bar fixed z-40 inset-0 h-14 font-bold bg-white shadow md:hidden">
 			<div class="h-full flex container mx-auto">
 				<a href="../../" class="logo flex items-center px-4">
 					<span>
@@ -229,7 +229,7 @@ const rqParams = ${rq.paramMapJsonStr};
 			</section>
 		</div>
 		
-		<header class="top-bar h-10 font-bold shadow-md fixed z-40 inset-0 bg-white hidden md:block">
+		<header class="top-bar h-16 font-bold shadow-md fixed z-40 inset-0 bg-white hidden md:block">
 			<div class="h-full container mx-auto flex">
 				<a href="../../" class="top-bar__logo flex items-center px-4 hover:underline hover:text-red-500">
 					<span>
