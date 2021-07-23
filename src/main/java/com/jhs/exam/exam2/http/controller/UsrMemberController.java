@@ -6,6 +6,7 @@ import com.jhs.exam.exam2.dto.ResultData;
 import com.jhs.exam.exam2.http.Rq;
 import com.jhs.exam.exam2.service.MemberService;
 import com.jhs.exam.exam2.util.Ut;
+import com.mysql.cj.xdevapi.Result;
 
 public class UsrMemberController extends Controller {
 	private MemberService memberService = Container.memberService;
@@ -46,10 +47,61 @@ public class UsrMemberController extends Controller {
 		case "doModify":
 			actionDoModify(rq);
 			break;
+		case "findLoginId":
+			actionShowFindLoginId(rq);
+			break;
+		case "doFindLoginId":
+			actionDoFindLoginId(rq);
+			break;
+		case "findedLoginId":
+			actionShowFindedLoginId(rq);
+			break;
 		default:
 			rq.println("존재하지 않는 페이지 입니다.");
 			break;
 		}
+	}
+
+	private void actionShowFindedLoginId(Rq rq) {
+		String name = rq.getParam("name", "");
+		String email = rq.getParam("email", "");
+		
+		Member member = memberService.getMemberByNameAndEmail(name, email);
+		
+		rq.setAttr("loginId", member.getLoginId());
+		rq.setAttr("regDate", member.getRegDate());
+		
+		rq.jsp("usr/member/findedLoginId");
+	}
+
+	private void actionDoFindLoginId(Rq rq) {
+		String name = rq.getParam("name", "");
+		String email = rq.getParam("email", "");
+		
+		if (name.length() == 0) {
+			rq.historyBack("name을 입력해주세요.");
+			return;
+		}
+		
+		if (email.length() == 0) {
+			rq.historyBack("email을 입력해주세요.");
+			return;
+		}
+		
+		ResultData findLoginIdRd = memberService.findLoginId(name, email);
+
+		if(findLoginIdRd.isFail()) {
+			rq.historyBack(findLoginIdRd.getMsg());
+			return;
+		}
+
+		String redirectUri = "../member/findedLoginId?name=" + name + "&email=" + email;
+		
+		rq.replace("", redirectUri);
+	}
+
+	private void actionShowFindLoginId(Rq rq) {
+		rq.jsp("usr/member/findLoginId");
 	}
 
 	private void actionShowModify(Rq rq) {

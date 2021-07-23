@@ -47,10 +47,10 @@ public class MemberService {
 			return ResultData.from("F-1", "중복된 아이디 입니다.");
 		}
 		if (memberByNickname != null) {
-			return ResultData.from("F-1", "중복된 닉네임 입니다.");
+			return ResultData.from("F-2", "중복된 닉네임 입니다.");
 		}
 		if (memberByEmail != null) {
-			return ResultData.from("F-1", "중복된 이메일 입니다.");
+			return ResultData.from("F-3", "중복된 이메일 입니다.");
 		}
 
 		memberRepository.join(loginId, loginPw, name, nickname, email, cellphoneNo);
@@ -68,13 +68,27 @@ public class MemberService {
 		}
 		if (memberByNickname != null) {
 			if(!memberByLoginId.getNickname().trim().equals(nickname.trim())) {
-				return ResultData.from("F-1", "중복된 닉네임 입니다.");
+				return ResultData.from("F-2", "중복된 닉네임 입니다.");
 			}
 		}
 		
 
 		memberRepository.modify(loginId, loginPw, name, nickname, email, cellphoneNo);
 		return ResultData.from("S-1", "회원정보 수정이 완료되었습니다..");
+	}
+
+	public Member getMemberByNameAndEmail(String name, String email) {
+		return memberRepository.getMemberByNameAndEmail(name, email);
+	}
+
+	public ResultData findLoginId(String name, String email) {
+		Member member = getMemberByNameAndEmail(name, email);
+		
+		if(member == null) {
+			return ResultData.from("F-1", "가입된 회원정보를 찾을 수 없습니다.");
+		}
+		
+		return ResultData.from("S-1", "회원님이 입력하신 정보와 일치하는 정보입니다.");
 	}
 
 }
