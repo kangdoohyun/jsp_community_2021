@@ -57,7 +57,9 @@ const rqParams = ${rq.paramMapJsonStr};
 						<option value="2">자유게시판</option>
 					</select>
 					<script>
+					if(rqBaseTypeAttrMapJsonStr.boardId){
 						$('.search-bar select[name="boardId"]').val(rqBaseTypeAttrMapJsonStr.boardId);
+					}
 					</script>
 				</div>
 			</div>
@@ -73,7 +75,9 @@ const rqParams = ${rq.paramMapJsonStr};
 						<option value="body">내용</option>
 					</select>
 					<script>
+					if(rqBaseTypeAttrMapJsonStr.searchKeywordTypeCode){
 						$('.search-bar select[name="searchKeywordTypeCode"]').val(rqBaseTypeAttrMapJsonStr.searchKeywordTypeCode);
+					}
 					</script>
 				</div>
 			</div>
