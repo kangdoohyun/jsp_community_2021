@@ -18,9 +18,9 @@
 			<div class="px-4 py-4">
 				<div>
 					<div class="badge badge-primary">아이디 목록</div>
-					<label class="label">
-							<span class="label-text">${loginId}</span>
-							<span class="label-text">${regDate}</span>
+					<label class="px-1 py-2 flex flex-col items-start justify-start">
+							<span class="">ID : ${loginId}</span>
+							<span class="">가입 날짜 : ${regDate}</span>
 					</label>
 				</div>
 				<div class="btn-box">
