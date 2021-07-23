@@ -10,7 +10,7 @@
 		<div class="card bordered shadow-lg">
 			<div class="card-title">
 				<span>
-					<i class="fas fa-sign-in-alt"></i>
+					<i class="fas fa-id-badge"></i>
 				</span>
 				<span>아이디 찾기 완료</span>
 			</div>

@@ -66,6 +66,7 @@
 
 					<div class="btns">
 						<button type="submit" class="btn btn-link">로그인</button>
+						<a href="./findLoginId" class="btn btn-link">아이디 찾기</a>
 					</div>
 				</form>
 			</div>

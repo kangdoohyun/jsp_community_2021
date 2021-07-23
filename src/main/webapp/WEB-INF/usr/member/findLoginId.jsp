@@ -10,7 +10,7 @@
 		<div class="card bordered shadow-lg">
 			<div class="card-title">
 				<span>
-					<i class="fas fa-sign-in-alt"></i>
+					<i class="fas fa-id-badge"></i>
 				</span>
 				<span>아이디 찾기</span>
 			</div>
@@ -68,6 +68,7 @@
 
 					<div class="btns">
 						<button type="submit" class="btn btn-link">완료</button>
+						<a class="btn btn-link" onclick="history.back();">뒤로가기</a>
 					</div>
 				</form>
 			</div>
